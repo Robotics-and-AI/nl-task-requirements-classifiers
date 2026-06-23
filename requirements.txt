@@ -1,0 +1,8 @@
+numpy
+sentence-transformers
+scikit-learn
+matplotlib
+seaborn
+inflect
+torch
+pyyaml

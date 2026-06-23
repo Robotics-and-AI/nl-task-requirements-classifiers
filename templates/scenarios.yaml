@@ -1,0 +1,3827 @@
+version: 1
+description: Scenario templates for synthetic robot task instructions. Requirements use [mobility_level, manipulation_level,
+  payload_level].
+placeholder_contract:
+  w: Sampled payload weight in kilograms, formatted by templates such as {w:.2f}.
+  d: Sampled manipulation/reach distance in centimeters.
+  units: Sampled integer count of items/parts/tools.
+  adj1: Sampled adjective from options.size_adjectives.
+  adj2: Second independently sampled adjective from options.size_adjectives.
+  place_src: Sampled source location from options.places.
+  place_dst: Sampled destination location from options.places; different from place_src when possible.
+  x1_y1_x2_y2: Sampled coordinates in meters when x_m and y_m ranges are present.
+review_summary:
+  source_file: templates.py
+  scenarios_found: 46
+  requirements_found: 46
+  train_templates_before_normalization: 920
+  eval_templates_before_normalization: 229
+  train_templates_after_normalization: 920
+  eval_templates_after_normalization: 230
+  structural_fixes_applied:
+  - 'scenario22: duplicate distance_range found in source; YAML keeps the effective final value [91, 130].'
+  - 'scenario32: one concatenated eval template was split into two separate eval templates.'
+scenarios:
+  scenario1:
+    requirements:
+      mobility_level: 1
+      manipulation_level: 2
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 1
+      - 50
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Manipulate a {w:.2f} kg load within a {d} cm range no mobility required
+      - Pick up {units} parts that are up to {d} cm radius with no repositioning needed
+      - Help the operator close with the assemble of the {adj1} parts without relocating
+      - Manipulate loads of up to {w:.2f} kg within a {d} cm range with no change in location
+      - Pick up {adj1} and {adj2} components within a {d} cm radius done in place
+      - Assist the operator in assembling the {adj1} components from a fixed position
+      - Pick up {w:.2f} kg load within {d} cm range requiring no relocation
+      - Sort {adj1} parts within {d} cm without moving to other location
+      - Handle objects weighing up to {w:.2f} kg within a {d} cm reach with no need for mobility
+      - Transfer {adj1} items within a {d} cm working radius from a fixed position
+      - Lift {adj1} tools or parts within a {d} cm range no mobility expected
+      - Place a {w:.2f} kg load accurately within a {d} cm workspace without needing to move
+      - Pick and place elements weighing up to {w:.2f} kg within a short range without relocating
+      - Pick and place components weighing {w:.2f} kg nearby requiring no movement
+      - Grasp and move {adj1} objects within a {d} cm radius from a fixed position
+      - Lift and place components weighing up to {w:.2f} kg within a {d} cm range no mobility required
+      - Pick up and relocate {adj1} mechanical elements within a {d} cm reach without needing to move to other place
+      - Precisely handle and place {w:.2f} kg components in the workspace next to you
+      - Manipulate {units} items within a confined {d} cm radius no repositioning needed
+      - Perform pick-and-place tasks involving objects up to {w:.2f} kg that are close requiring no movement to other place
+      eval:
+      - Handle and place {w:.2f} kg components within a {d} cm radius with no mobility required
+      - Pick and place {adj1} items accurately within a {d} cm range with no change in location
+      - Assist in assembling {adj1} mechanical parts nearby with zero mobility demand
+      - Move and arrange {w:.2f} kg tools within a confined {d} cm workspace without needing to move
+      - Precisely manipulate {adj1} components within close proximity without relocating
+  scenario2:
+    requirements:
+      mobility_level: 1
+      manipulation_level: 2
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 1
+      - 50
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Manipulate a {w:.2f} kg load in a {d} cm range no mobility required
+      - Pick up {w:.2f} kg part and place it {d} cm away with no repositioning needed
+      - Handle {units} finished products and place them close
+      - Sort {adj1} parts within {d} cm from a fixed position
+      - Manipulate loads of up to {w:.2f} kg within a {d} cm range with no mobility required
+      - Pick up {adj1} components within a {d} cm radius requiring no movement
+      - Assist the operator in assembling {adj1} items with no change in location
+      - Pick up {w:.2f} kg load within {d} cm range without moving to other location
+      - Handle objects weighing up to {w:.2f} kg within a {d} cm reach without relocating
+      - Transfer {units} items within a {d} cm working radius no mobility required
+      - Lift tools or parts within a {d} cm range from a fixed position
+      - Place a {w:.2f} kg load accurately within a {d} cm workspace with no repositioning needed
+      - Pick and place elements weighing up to {w:.2f} kg within a short range without need to move
+      - Pick and place components weighing {w:.2f} kg nearby your place
+      - Grasp and move objects {adj1} within a {d} cm radius with zero mobility demand
+      - Lift and place components weighing up to {w:.2f} kg within a {d} cm range without moving to other location
+      - Pick up and relocate {adj1} mechanical elements within a {d} cm reach with no change in location
+      - Precisely handle and place {w:.2f} kg components in the workspace where you are
+      - Manipulate {adj1} size items within a confined {d} cm radius requiring no movement to other location
+      - Perform pick-and-place tasks involving objects up to {w:.2f} kg that are close with no need for mobility
+      eval:
+      - Handle and place {w:.2f} kg components within a {d} cm radius no mobility required
+      - Pick up and relocate {adj1} items within a {d} cm reach with no repositioning needed
+      - Manipulate {w:.2f} kg loads accurately in a confined {d} cm workspace without moving to other location
+      - Assist in positioning {adj1} mechanical parts nearby to your fixed position
+      - Lift and arrange {w:.2f} kg tools or components within close proximity without relocating
+  scenario3:
+    requirements:
+      mobility_level: 1
+      manipulation_level: 2
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 1
+      - 50
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Manipulate a {w:.2f} kg load in a {d} cm range no mobility required
+      - Pick up {w:.2f} kg part and place it {d} cm away with no repositioning needed
+      - Handle {units} finished products and place them close
+      - Sort {adj1} parts within {d} cm from a fixed position
+      - Manipulate loads of up to {w:.2f} kg within a {d} cm range with no mobility required
+      - Pick up {adj1} components within a {d} cm radius requiring no movement
+      - Assist the operator in assembling {adj1} items with no change in location
+      - Pick up {w:.2f} kg load within {d} cm range without moving to other location
+      - Handle objects weighing up to {w:.2f} kg within a {d} cm reach without relocating
+      - Transfer {adj1} items within a {d} cm working radius no mobility required
+      - Lift {adj1} tools or parts within a {d} cm range from a fixed position
+      - Place a {w:.2f} kg load accurately within a {d} cm workspace with no repositioning needed
+      - Pick and place elements weighing up to {w:.2f} kg within a short range without need to move
+      - Pick and place components weighing {w:.2f} kg nearby your place
+      - Grasp and move vey heavy objects within a {d} cm radius with zero mobility demand
+      - Lift and place components weighing up to {w:.2f} kg within a {d} cm range without moving to other location
+      - Pick up and relocate {adj1} mechanical elements within a {d} cm reach with no change in location
+      - Precisely handle and {w:.2f} kg components in the workspace where you are
+      - Manipulate {units} items within a confined {d} cm radius requiring no movement to other location
+      - Perform pick-and-place tasks involving objects up to {w:.2f} kg that are close with no need for mobility
+      eval:
+      - Handle and position {w:.2f} kg components within a {d} cm workspace no mobility required
+      - Pick up and move {adj1} items up to {w:.2f} kg within close range from a fixed position
+      - Manipulate loads of around {w:.2f} kg accurately within a confined {d} cm radius with no change in location
+      - Assist in handling compact but {adj1} mechanical parts with no repositioning needed
+      - Lift and place {w:.2f} kg components within a short reach in your workstation
+  scenario4:
+    requirements:
+      mobility_level: 1
+      manipulation_level: 3
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 51
+      - 90
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Manipulate a {w:.2f} kg load in a {d} cm range no mobility required
+      - Pick up {adj1} part and place it {d} cm away with no repositioning needed
+      - Pick up {units} items from conveyor belt and place them {d} cm away within your workstation
+      - Handle {adj1} parts and place them {d} cm away from your fixed position
+      - Manipulate loads of up to {w:.2f} kg within a {d} cm range without moving to other location
+      - Pick up {adj1} and light components within a {d} cm radius with zero mobility demand
+      - Assist the operator in assembling {adj1} component that is not too far away from your fixed position
+      - Pick up {w:.2f} kg load within {d} cm range with no repositioning needed
+      - Sort {adj1} parts within {d} cm without need to move
+      - Handle objects weighing up to {w:.2f} kg within a {d} cm reach without relocating
+      - Transfer {adj1} items within a {d} cm working radius with no need for mobility
+      - Lift lightweight tools or parts within a {d} cm range at your workstation
+      - Place a {w:.2f} kg load accurately within a {d} cm workspace requiring no relocation
+      - Pick and place components weighing {w:.2f} kg within a medium range no need for mobility
+      - Grasp and move {adj1} objects within an {d} cm radius without changing your location
+      - Lift and place components weighing up to {w:.2f} kg within a {d} cm range no movement required
+      - Pick up and relocate {adj1} mechanical elements within a {d} cm reach with zero mobility demand
+      - Precisely handle and place {w:.2f} kg components within a {d} cm distance in the workspace where you are
+      - Manipulate {units} items within a confined {d} cm radius no mobility expected
+      - Perform pick-and-place tasks involving objects up to {w:.2f} kg that are not too far from your fixed position
+      eval:
+      - Handle and place {w:.2f} kg loads within an {d} cm workspace no mobility required
+      - Pick up and move {adj1} parts up to {w:.2f} kg within a {d} cm reach no relocation nedded
+      - Manipulate {adj1} components from a conveyor belt and place them not too far away from your fixed position
+      - Lift and position {adj1} items within an {d} cm radius with no need to change location
+      - Precisely handle and arrange {w:.2f} kg components within a medium range requiring no movement
+  scenario5:
+    requirements:
+      mobility_level: 1
+      manipulation_level: 3
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 51
+      - 90
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Manipulate a {w:.2f} kg load in a {d} cm range no mobility required
+      - Pick up {w:.2f} kg part and place it {d} cm away with no repositioning needed
+      - Handle {adj1} items up to a {d} cm radius with zero mobility demand
+      - Handle {units} finished products and place them {d} cm away from your fixed position
+      - Sort {adj1} parts within {d} cm with no change in location
+      - Manipulate loads of up to {w:.2f} kg within a {d} cm range without moving to other location
+      - Pick up {adj1} components within a {d} cm radius with no change in location
+      - Assist the operator in assembling {adj1} items that are not too far requiring no mobility
+      - Pick up {w:.2f} kg load within {d} cm range with no change in location
+      - Handle objects weighing up to {w:.2f} kg within a {d} cm reach no relocation needed
+      - Transfer {units} items within a {d} cm working radius with zero mobility demand
+      - Place a {w:.2f} kg load accurately within a {d} cm workspace no mobility required
+      - Pick and place elements weighing up to {w:.2f} kg not too far away from your fixed position
+      - Pick and place components weighing {w:.2f} kg within {d} cm range requiring no movement to other place
+      - Grasp and move {adj1} objects within an {d} cm radius no need for mobility
+      - Lift and place component weighing up to {w:.2f} kg within a {d} cm range done in place
+      - Pick up and relocate {adj1} mechanical elements within a {d} cm reach no mobility needed
+      - Precisely handle and place {w:.2f} kg components in the workspace not too far away from your fixed position
+      - Manipulate {adj1} size items within a confined {d} cm radius with no mobility demand
+      - Perform pick-and-place tasks involving objects up to {w:.2f} kg that are not too far without relocating
+      eval:
+      - Handle and position {w:.2f} kg components within an {d} cm workspace no mobility needed
+      - Pick up and relocate {adj1} items up to {w:.2f} kg within a {d} cm reach with no change in location
+      - Manipulate {adj1} parts within a {d} cm range from a fixed position
+      - Lift and place {w:.2f} kg mechanical components within close to medium distance with no relocating need
+      - Precisely handle and arrange {adj1} objects within an {d} cm radius no mobility demand
+  scenario6:
+    requirements:
+      mobility_level: 1
+      manipulation_level: 3
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 51
+      - 90
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Manipulate a {w:.2f} kg load in a {d} cm range no mobility required
+      - Pick up {w:.2f} kg part and place it {d} cm away no repositioning needed
+      - Handle {adj1} items up to a {d} cm radius with zero mobility demand
+      - Handle {units} finished products and place them {d} cm away from your fixed position
+      - Sort {adj1} parts within {d} cm with no change in location
+      - Manipulate loads of up to {w:.2f} kg within a {d} cm range without moving to other location
+      - Pick up {adj1} components within a {d} cm radius with no change in location
+      - Assist the operator in assembling {adj1} items that are not too far within your workstation
+      - Pick up {w:.2f} kg load within {d} cm range with no change in location
+      - Handle objects weighing up to {w:.2f} kg within a {d} cm reach no relocation needed
+      - Transfer {units} items within a {d} cm working radius with zero mobility demand
+      - Place an {w:.2f} kg load accurately within a {d} cm workspace no mobility required
+      - Pick and place elements weighing up to {w:.2f} kg not too far away from your fixed position
+      - Pick and place components weighing {w:.2f} kg within {d} cm range requiring no movement to other place
+      - Grasp and move {adj1} objects within an {d} cm radius no need for mobility
+      - Lift and place component weighing up to {w:.2f} kg within a {d} cm range done in place
+      - Pick up and relocate {adj1} mechanical elements within a {d} cm reach no mobility needed
+      - Precisely handle and place {w:.2f} kg components in the workspace not too far away from fixed position
+      - Manipulate {adj1} items within a confined {d} cm radius with no mobility demand
+      - Perform pick-and-place tasks involving objects up to {w:.2f} kg that are not too far without relocating
+      eval:
+      - Handle and place {w:.2f} kg loads within an {d} cm workspace no mobility needed
+      - Pick up and move {adj1} items up to {w:.2f} kg within close range with no change in location
+      - Manipulate {adj1} components accurately within a {d} cm radius from your fixed position
+      - Lift and position {adj1} parts within medium distance in your workstation
+      - Precisely handle and arrange {adj1} mechanical objects within an {d} cm reach no mobility demand
+  scenario7:
+    requirements:
+      mobility_level: 1
+      manipulation_level: 4
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 91
+      - 130
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Manipulate a {w:.2f} kg load in a {d} cm range no mobility needed
+      - Pick up {adj1} parts and place them very far away with no repositioning needed
+      - Pick up {units} items from conveyor belt and place them {d} cm away without relocating
+      - Handle {adj1} component and place it {d} cm away with zero mobility demand
+      - Manipulate loads of up to {w:.2f} kg in a range up to {d} cm from your fixed position
+      - Pick up {adj1} components within a {d} cm radius no mobility expected
+      - Assist the operator in assembling {adj1} component that is very far away in your workspace
+      - Pick up {w:.2f} kg load within {d} cm range requiring no movement
+      - Sort {adj1} parts within {d} cm without moving to other location
+      - Handle objects weighing up to {w:.2f} kg within a {d} cm reach with no mobility required
+      - Transfer {units} items within a {d} cm working radius without relocating
+      - Lift {adj1} tools or parts within a {d} cm range with zero mobility required
+      - Place a {w:.2f} kg load accurately within a {d} cm in your workspace
+      - Pick and place elements weighing up to {w:.2f} kg very far away without relocating
+      - Pick and place components weighing {w:.2f} kg within a big range from your fixed position
+      - Grasp and move {adj1} objects within a {d} cm radius without needing to move
+      - Lift and place component weighing up to {w:.2f} kg within a {d} cm range requiring no movement
+      - Pick up and relocate {adj1} mechanical elements within a {d} cm reach from your station
+      - Precisely handle and place {w:.2f} kg components in the workspace far away with no need for mobility
+      - Perform pick-and-place tasks involving objects up to {w:.2f} kg that are far away without moving to other location
+      eval:
+      - Handle and position {w:.2f} kg components within a {d} cm workspace no mobility required
+      - Pick up and place {adj1} items up to {w:.2f} kg at long distance without need to relocate
+      - Manipulate lightweight parts from a conveyor belt within {d} cm reach from your fixed position
+      - Lift and arrange {adj1} components within a {d} cm range no mobility expected
+      - Precisely handle and relocate {adj1} objects far away within your station
+  scenario8:
+    requirements:
+      mobility_level: 1
+      manipulation_level: 4
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 91
+      - 130
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Manipulate a {w:.2f} kg load in a {d} cm range no mobility required
+      - Pick up {adj1} parts and place them very far away with no repositioning needed
+      - Pick up {adj1} items from conveyor belt and place them {d} cm away without relocating
+      - Handle {units} finished products and place them {d} cm away with zero mobility demand
+      - Manipulate loads of up to {w:.2f} kg in a range up to {d} cm from your fixed position
+      - Pick up {adj1} components within a {d} cm radius no mobility expected
+      - Assist the operator in assembling {adj1} items that are very far away in your workspace
+      - Pick up {w:.2f} kg part and place it {d} cm away requiring no movement
+      - Sort {adj1} parts within {d} cm without moving to other location
+      - Handle {adj1} items up to a {d} cm radius from your fixed position
+      - Transfer {units} items within a {d} cm working radius without relocating
+      - Lift {adj1} tools or parts within a {d} cm range with zero mobility required
+      - Place a {w:.2f} kg load accurately within a {d} cm in your workspace
+      - Pick and place elements weighing up to {w:.2f} kg very far away without relocating
+      - Pick and place components weighing {w:.2f} kg within a big range from your fixed position
+      - Grasp and move {adj1} objects within a {d} cm radius without needing to move
+      - Lift and place components weighing up to {w:.2f} kg within a {d} cm range no need for mobility
+      - Pick up and relocate {adj1} mechanical elements within a {d} cm reach from your station
+      - Precisely handle and place {w:.2f} kg component in the workspace far away with no mobility expected
+      - Perform pick-and-place tasks involving objects up to {w:.2f} kg that are far away without moving to other location
+      eval:
+      - Handle and position {w:.2f} kg components within a {d} cm workspace no mobility required
+      - Pick up and place {adj1} items up to {w:.2f} kg at long distance without need to relocate
+      - Manipulate {adj1} parts from a conveyor belt within {d} cm reach from your fixed position
+      - Lift and arrange {adj1} components within a {d} cm range no mobility expected
+      - Precisely handle and relocate items weighing up to {w:.2f} kg over a long range no mobility expected
+  scenario9:
+    requirements:
+      mobility_level: 1
+      manipulation_level: 4
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 91
+      - 130
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Manipulate a {w:.2f} kg load in a {d} cm range no mobility required
+      - Pick up {adj1} parts and place them very far away with no repositioning needed
+      - Pick up {adj1} items from conveyor belt and place them {d} cm away without relocating
+      - Handle {units} finished products and place them {d} cm away with zero mobility demand
+      - Manipulate loads of up to {w:.2f} kg in a range more than {d} cm from your fixed position
+      - Pick up {adj1} components within a {d} cm radius no mobility expected
+      - Assist the operator in assembling {adj1} items that are very far away in your workspace
+      - Pick up {w:.2f} kg part and place it {d} cm away requiring no movement
+      - Sort {adj1} parts within {d} cm without moving to other location
+      - Handle {adj1} items up to a {d} cm radius from your fixed position
+      - Transfer {units} items within a {d} cm working radius without relocating
+      - Lift {adj1} tools or parts within a {d} cm range with zero mobility required
+      - Place a {w:.2f} kg load accurately within a {d} cm in your workspace
+      - Pick and place elements weighing up to {w:.2f} kg very far away without relocating
+      - Pick and place components weighing {w:.2f} kg within a big range from your fixed position
+      - Grasp and move {adj1} objects within a {d} cm radius without needing to move
+      - Lift and place components weighing up to {w:.2f} kg within a {d} cm range no need for mobility
+      - Pick up and relocate {adj1} mechanical elements within a {d} cm reach from your station
+      - Precisely handle and place {w:.2f} kg component in the workspace far away with no mobility expected
+      - Perform pick-and-place tasks involving objects up to {w:.2f} kg that are far away without moving to other location
+      eval:
+      - Handle and position {w:.2f} kg components within a {d} cm workspace no mobility required
+      - Pick up and place {adj1} items up to {w:.2f} kg at long distance without need to relocate
+      - Manipulate {adj1} parts from a conveyor belt within {d} cm reach from your fixed position
+      - Lift and arrange {adj1} components within a {d} cm range no mobility expected
+      - Precisely handle and relocate items weighing up to {w:.2f} kg over a long range no mobility expected
+  scenario10:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 1
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 0
+      - 1
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Navigate to {place_dst} and wait for further instructions no manipulation required
+      - Navigate to {place_dst} for inspection zero manipulation expected
+      - Navigate from coordinates (x:{x1:.2f}, y:{y1:.2f}) to coordinates (x:{x2:.2f}, y:{y2:.2f}) no object handling required
+      - Transport {w:.2f} kg of load from {place_src} to {place_dst} with no manipulation expected
+      - Deliver spare parts to {place_dst} zero manipulation required
+      - Deliver documents and {adj1} packages to {place_dst} handling actions not required
+      - Move from {place_src} to {place_dst} without performing any manipulation
+      - Move to {place_dst} no manipulation required
+      - Move to coordinates (x:{x1:.2f}, y:{y1:.2f}) no manipulation needed
+      - Go to {place_dst} no picking or placing
+      - Move up to {w:.2f} kg items from {place_src} to {place_dst} without performing any manipulation
+      - Transport {units} {adj1} tools to {place_dst} handling actions not required
+      - Transport {adj1} tools from {place_src} to {place_dst} no manipulation expected
+      - Proceed to {place_dst} for material pickup without any pick and place actions
+      - Deliver components to {place_dst} no manipulation required
+      - Transport assembled parts from {place_src} to {place_dst} requiring no object handling
+      - Carry a {w:.2f} kg payload from {place_src} to {place_dst} no need for manipulation
+      - Carry tools weighing up to {w:.2f} kg to {place_dst} with zero manipulation expected
+      - Deliver {adj1} replacement parts to {place_dst} handling actions not required
+      - Transport {units} boxes to {place_dst} no manipulation required
+      eval:
+      - Navigate to {place_dst} no manipulation required
+      - Move {adj1} tools from {place_src} to {place_dst}  no manipulation expected
+      - Proceed to {place_dst} to pick up {adj1} materials no handling involved
+      - Transport {w:.2f} kg of materials from {place_src} to {place_dst} handlig actions not required
+      - Deliver {adj1} spare parts from {place_src} to {place_dst} without performing any manipulation
+  scenario11:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 1
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 0
+      - 1
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Transport {w:.2f} kg of load from {place_src} to {place_dst} no manipulation required
+      - Move up to {w:.2f} kg items from {place_src} to {place_dst} requiring no object handling
+      - Deliver {w:.2f} kg of items to {place_dst} no manipulation expected
+      - Transport {w:.2f} kg of finished goods to {place_dst} with zero manipulation expected
+      - Carry {w:.2f} kg of spare parts from {place_src} to {place_dst} without any pick and place actions
+      - Move {adj1} boxes from coordinates (x:{x1:.2f}, y:{y1:.2f}) to coordinates (x:{x2:.2f}, y:{y2:.2f}) without performing
+        any manipulation
+      - Transport {adj1} tools from {place_src} to {place_dst} no manipulation needed
+      - Transport {w:.2f} kg of finished products to {place_dst} no manipulation required
+      - Deliver {w:.2f} kg of components from {place_src} to {place_dst} requiring no object handling
+      - Carry {w:.2f} kg of materials from {place_src} to {place_dst} no manipulation expected
+      - Transport {w:.2f} kg of mechanical parts to {place_dst} handling actions not required
+      - Deliver {w:.2f} kg of finished parts to {place_dst} no manipulation needed
+      - Carry {w:.2f} kg of items from {place_src} to {place_dst} no picking or placing
+      - Transfer {units} boxes from {place_src} to {place_dst} no manipulation required
+      - Move up to {w:.2f} kg of goods to coordinates (x:{x1:.2f}, y:{y1:.2f}) no need for manipulation
+      - Transport {adj1} components from {place_src} to {place_dst} without any picking or placing actions
+      - Carry {w:.2f} kg of tools from {place_src} to {place_dst} no manipulation expected
+      - Deliver {w:.2f} kg of boxed items from {place_src} to {place_dst} with no manipulation required
+      - Move {w:.2f} kg of inspection samples to {place_dst} without performing any manipulation
+      - Transport {units} packages weighing up to {w:.2f} kg between departments no handling involved
+      eval:
+      - Carry {w:.2f} kg of components from {place_src} to {place_dst} no manipulation required
+      - Move {adj1} parts weighing {w:.2f} kg from {place_src} to {place_dst} no manipulation expected
+      - Deliver {w:.2f} kg of samples at {place_dst} no object handling involved
+      - Transport {w:.2f} kg of packaged goods from {place_src} to {place_dst} without performing any manipulation
+      - Transfer {w:.2f} kg of tools from {place_src} to {place_dst} without any pick and place actions
+  scenario12:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 1
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 0
+      - 1
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Transport {w:.2f} kg of load from {place_dst} to {place_dst} no manipulation required
+      - Deliver {w:.2f} kg of items to {place_dst} requiring no object handling
+      - Transport {w:.2f} kg of finished goods to {place_dst} with zero manipulation expected
+      - Carry {w:.2f} kg of spare parts from {place_src} to {place_dst} without any pick and place actions
+      - Move {units} boxes from coordinates (x:{x1:.2f}, y:{y1:.2f}) to coordinates (x:{x2:.2f}, y:{y2:.2f}) without performing
+        any manipulation
+      - Carry {adj1} spare parts from {place_src} to {place_dst} no handling involved
+      - Move {w:.2f} kg of {adj1} boxes from {place_src} to {place_dst} handling actions not required
+      - Transport {adj1} tools from {place_src} to {place_dst} requiring no object handling
+      - Deliver {w:.2f} kg of components from {place_src} to {place_dst} no manipulation needed
+      - Carry {w:.2f} kg of materials from {place_src} to {place_dst} no need for manipulation
+      - Transport {w:.2f} kg of mechanical parts to {place_dst} no picking or placing actions
+      - Deliver {adj1} finished parts to {place_dst} no manipulation needed
+      - Carry {w:.2f} kg of items from {place_src} to {place_dst} no handling involved
+      - Transfer {units} size boxes from {place_src} to {place_dst} without performing any manipulation
+      - Move up to {w:.2f} kg to coordinates (x:{x1:.2f}, y:{y1:.2f}) no manipulation required
+      - Transport {w:.2f} kg of components from {place_src} to {place_dst} no need for manipulation
+      - Carry {w:.2f} kg of tools from {place_src} to {place_dst} requiring no object handling
+      - Deliver {w:.2f} kg of boxed items from {place_src} to {place_dst} with no manipulation expected
+      - Move {w:.2f} kg of inspection samples to {place_dst} without performing any manipulation
+      - Transport {w:.2f} kg of packages between departments handling actions not required
+      eval:
+      - Transport {w:.2f} kg of tools from {place_src} to {place_dst} no manipulation required
+      - Carry {w:.2f} kg of goods from {place_src} to {place_dst} no need for manipulation
+      - Deliver {w:.2f} kg of samples to {place_dst} no manipulation demand
+      - Move {adj1} boxes from {place_src} to {place_dst} without performing any manipulation
+      - Transfer {w:.2f} kg of finished products to {place_dst} no handling actions required
+  scenario13:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 1
+      payload_level: 4
+    ranges:
+      weight_kg:
+      - 10.1
+      - 50.0
+      reach_cm:
+      - 0
+      - 1
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 10
+      - 11
+      - 12
+      size_adjectives:
+      - super heavy
+      - big size super heavy
+      - large super heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Transport {w:.2f} kg of load from {place_src} to {place_dst} no manipulation required
+      - Move up to {w:.2f} kg items from {place_src} to {place_dst} no manipulation expected
+      - Deliver {w:.2f} kg of items to {place_dst} requiring no object handling
+      - Transport {w:.2f} kg of finished goods to {place_dst} no picking or placing actions
+      - Carry {adj1} spare parts from {place_src} to {place_dst} without performing any manipulation
+      - Move {units} boxes from coordinates (x:{x1:.2f}, y:{y1:.2f}) to coordinates (x:{x2:.2f}, y:{y2:.2f}) handling actions
+        not required
+      - Carry {adj1} equipment to {place_dst} no picking or placing actions
+      - Move {adj1} parts from {place_src} to {place_dst} no handling involved
+      - Move {units} components from {place_src} to {place_dst} no manipulation needed
+      - Transport {adj1} tools from {place_src} to {place_dst} no need for manipulation
+      - Deliver {w:.2f} kg of components from {place_src} to {place_dst} handling actions not required
+      - Carry {w:.2f} kg of materials from {place_src} to {place_dst} no manipulation required
+      - Transport {w:.2f} kg of mechanical parts to {place_dst} without any manipulation required
+      - Deliver {adj1} finished parts to {place_dst} no manipulation expected
+      - Carry {w:.2f} kg of items from {place_src} to {place_dst} without any pick and place actions
+      - Transfer {adj1} boxes from {place_src} to {place_dst} no manipulation involved
+      - Move up to {w:.2f} kg to coordinates (x:{x1:.2f}, y:{y1:.2f}) no manipulation expected
+      - Transport {w:.2f} kg of components from {place_src} to {place_dst} no need for manipulation
+      - Carry {w:.2f} kg of tools from {place_src} to {place_dst} no handling involved
+      - Deliver {w:.2f} kg of boxed items from {place_src} to {place_dst} without performing any manipulation
+      eval:
+      - Carry {w:.2f} kg of metal components from {place_src} to {place_dst} no manipulation required
+      - 'Transport {w:.2f} kg of packed materials from {place_src} to {place_dst} no need for manipulation '
+      - Move {w:.2f} kg of equipment from {place_src} to {place_dst} no manipulation expected
+      - Deliver {w:.2f} kg of spare parts from {place_src} to {place_dst} handling actions not required
+      - Transfer large {w:.2f} kg boxes from {place_src} to {place_dst} without performing any manipulation
+  scenario14:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 2
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 1
+      - 50
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load in a {d} cm range in {place_src} and transport it to {place_dst}
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), collect {w:.2f} kg of components within {d} cm, and deliver them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst}
+      - Navigate to {place_src}, grab {units} tools within a {d} cm range and deliver it to {place_dst}
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst}
+      - After reaching {place_src}, grasp a {w:.2f} kg component within {d} cm and deliver it to {place_dst}
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst}
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst}
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst}
+      - Navigate to {place_src}, grasp {w:.2f} kg of materials within {d} cm, and transport them to coordinates (x:{x1:.2f},
+        y:{y1:.2f})
+      - Go to {place_src}, collect a {w:.2f} kg box within {d} cm, and deliver it to {place_dst}
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst}
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to coordinates (x:{x1:.2f}, y:{y1:.2f})
+      - Go to {place_src}, grab a {w:.2f} kg part within {d} cm, and take it to {place_dst}
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst}
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst}
+      - From the preparation table, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst}
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to the operator's station
+      - At {place_src}, collect a {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst}
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst}
+      eval:
+      - Go to {place_src}, pick up {w:.2f} kg of materials within a {d} cm range, and transport them to {place_dst}
+      - Navigate to {place_src}, grasp {w:.2f} kg of finished components within {d} cm, and deliver them to {place_dst}
+      - At {place_src}, collect a {w:.2f} kg box within {d} cm and move it to {place_dst}
+      - From {place_src}, lift {w:.2f} kg of tools within a {d} cm reach and take them to {place_dst}
+      - Head to {place_src}, retrieve {w:.2f} kg of parts within {d} cm, and carry them to {place_dst}
+  scenario15:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 2
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 1
+      - 50
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load in a {d} cm range in {place_src} and transport it to {place_dst}
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), collect {w:.2f} kg of components within {d} cm, and deliver them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst}
+      - Navigate to {place_src}, grab {units} tools within a {d} cm range and deliver it to {place_dst}
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst}
+      - After reaching {place_src}, grasp a {w:.2f} kg component within {d} cm and deliver it to {place_dst}
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst}
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst}
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst}
+      - Navigate to {place_src}, grasp {w:.2f} kg of materials within {d} cm, and transport them to coordinates (x:{x1:.2f},
+        y:{y1:.2f})
+      - Go to {place_src}, collect a {w:.2f} kg box within {d} cm, and deliver it to {place_dst}
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst}
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst}
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst}
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst}
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst}
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst}
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst}
+      - At {place_src}, collect a {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst}
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst}
+      eval:
+      - Go to {place_src}, lift a {w:.2f} kg component within a {d} cm range, and deliver it to {place_dst}
+      - Navigate to {place_src}, grasp {w:.2f} kg of materials within {d} cm, and transport them to {place_dst}
+      - At {place_src}, collect a {w:.2f} kg load within {d} cm and carry it to {place_dst}
+      - Head to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and bring it back to {place_dst}
+      - From {place_src}, retrieve {w:.2f} kg of mechanical parts within a {d} cm reach and deliver them to {place_dst}
+  scenario16:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 2
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 1
+      - 50
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load in a {d} cm range in {place_src} and transport it to {place_dst}
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), collect {w:.2f} kg of components within {d} cm, and deliver them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst}
+      - Navigate to {place_src}, grab {units} tools within a {d} cm range and deliver it to {place_dst}
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst}
+      - After reaching {place_src}, grasp an {w:.2f} kg component within {d} cm and deliver it to {place_dst}
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst}
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst}
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst}
+      - Navigate to {place_src}, grasp {w:.2f} kg of materials within {d} cm, and transport them to coordinates (x:{x1:.2f},
+        y:{y1:.2f})
+      - Go to {place_src}, collect an {w:.2f} kg box within {d} cm, and deliver it to {place_dst}
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst}
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst}
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst}
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst}
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst}
+      - From {place_src}, pick up {adj1} packages weighing {d} kg within {d} cm and move them to {place_dst}
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst}
+      - At {place_src}, collect an {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst}
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst}
+      eval:
+      - Retrieve a {w:.2f} kg load within {d} cm at {place_src} and carry it to {place_dst}
+      - Move to {place_src}, pick up {w:.2f} kg of components within {d} cm, and transport them to {place_dst}
+      - Proceed to {place_src}, collect {units} finished products within {d} cm, and deliver them to {place_dst}
+      - Go to {place_src}, grasp {w:.2f} kg of tools within {d} cm, and move them to {place_dst}
+      - At {place_src}, lift {w:.2f} kg of materials within {d} cm and bring them to {place_dst}
+  scenario17:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 3
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 51
+      - 90
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load in a {d} cm range in {place_src} and transport it to {place_dst}
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), collect {w:.2f} kg of components within {d} cm, and deliver them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst}
+      - Navigate to {place_src}, grab {units} tools within a {d} cm range and deliver it to {place_dst}
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst}
+      - After reaching {place_src}, grasp an {w:.2f} kg component within {d} cm and deliver it to {place_dst}
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst}
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst}
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst}
+      - Navigate to {place_src}, grasp {w:.2f} kg of materials within {d} cm, and transport them to coordinates (x:{x1:.2f},
+        y:{y1:.2f})
+      - Go to {place_src}, collect an {w:.2f} kg box within {d} cm, and deliver it to {place_dst}
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst}
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst}
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst}
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst}
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst}
+      - From {place_src}, pick up {adj1} packages weighing {d} kg within {d} cm and move them to {place_dst}
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst}
+      - At {place_src}, collect an {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst}
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst}
+      eval:
+      - Go to {place_src}, lift a {w:.2f} kg component within an {d} cm range, and transport it to {place_dst}
+      - Navigate to {place_src}, grasp {w:.2f} kg of finished items within {d} cm, and deliver them to {place_dst}
+      - At {place_src}, pick up a {w:.2f} kg load within a {d} cm reach and carry it to {place_dst}
+      - From {place_src}, retrieve {w:.2f} kg of {adj1} tools within {d} cm and bring them to {place_dst}
+      - Head to {place_src}, collect {w:.2f} kg of spare parts within {d} cm, and deliver them to {place_dst}
+  scenario18:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 3
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 51
+      - 90
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load in a {d} cm range in {place_src} and transport it to {place_dst}
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), collect {w:.2f} kg of components within {d} cm, and deliver them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst}
+      - Navigate to {place_src}, grab {units} tools within a {d} cm range and deliver it to {place_dst}
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst}
+      - After reaching {place_src}, grasp an {w:.2f} kg component within {d} cm and deliver it to {place_dst}
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst}
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst}
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst}
+      - Navigate to {place_src}, grasp {w:.2f} kg of materials within {d} cm, and transport them to coordinates (x:{x1:.2f},
+        y:{y1:.2f})
+      - Go to {place_src}, collect an {w:.2f} kg box within {d} cm, and deliver it to {place_dst}
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst}
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst}
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst}
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst}
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst}
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst}
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst}
+      - At {place_src}, collect an {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst}
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst}
+      eval:
+      - Go to {place_src}, lift a {w:.2f} kg component within an {d} cm range, and deliver it to {place_dst}
+      - Navigate to {place_src}, pick up {w:.2f} kg of finished goods within {d} cm, and move them to {place_dst}
+      - At {place_src}, grasp a {w:.2f} kg part within {d} cm and carry it to {place_dst}
+      - From {place_src}, retrieve {w:.2f} kg of materials within an {d} cm reach and deliver them to {place_dst}
+      - Head to {place_src}, collect {w:.2f} kg of inspected components within {d} cm, and return them to {place_dst}
+  scenario19:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 3
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 51
+      - 90
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load in a {d} cm range in {place_src} and transport it to {place_dst}
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), collect {w:.2f} kg of components within {d} cm, and deliver them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst}
+      - Navigate to {place_src}, grab {units} tools within a {d} cm range and deliver it to {place_dst}
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst}
+      - After reaching {place_src}, grasp an {w:.2f} kg component within {d} cm and deliver it to {place_dst}
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst}
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst}
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst}
+      - Navigate to {place_src}, grasp {w:.2f} kg of materials within {d} cm, and transport them to coordinates (x:{x1:.2f},
+        y:{y1:.2f})
+      - Go to {place_src}, collect an {w:.2f} kg box within {d} cm, and deliver it to {place_dst}
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst}
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst}
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst}
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst}
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst}
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst}
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst}
+      - At {place_src}, collect an {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst}
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst}
+      eval:
+      - Go to {place_src}, lift a {w:.2f} kg component within {d} cm, and deliver it to {place_dst}
+      - Navigate to {place_src}, grasp a {w:.2f} kg box within {d} cm, and move it to {place_dst}
+      - At {place_src}, pick up an {w:.2f} kg part within {d} cm and transport it to {place_dst}
+      - From {place_src}, collect {w:.2f} kg of finished goods within {d} cm and carry them to {place_dst}
+      - Head to {place_src}, grab {w:.2f} of spare parts within {d} cm, and deliver them to {place_dst}
+  scenario20:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 4
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 91
+      - 130
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load in a {d} cm range in {place_src} and transport it to {place_dst}
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), collect {w:.2f} kg of components within {d} cm, and deliver them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst}
+      - Navigate to {place_src}, grab {units} tools within a {d} cm range and deliver it to {place_dst}
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst}
+      - After reaching {place_src}, grasp an {w:.2f} kg component within {d} cm and deliver it to {place_dst}
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst}
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst}
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst}
+      - Navigate to {place_src}, grasp {w:.2f} kg of materials within {d} cm, and transport them to coordinates (x:{x1:.2f},
+        y:{y1:.2f})
+      - Go to {place_src}, collect an {w:.2f} kg box within {d} cm, and deliver it to {place_dst}
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst}
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst}
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst}
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst}
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst}
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst}
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst}
+      - At {place_src}, collect an {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst}
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst}
+      eval:
+      - Head to {place_src}, lift a {w:.2f} kg load within {d} cm, and deliver it to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and transport them to {place_dst}
+      - At {place_src}, pick up {w:.2f} kg of finished items within {d} cm and move them to {place_dst}
+      - From {place_src}, grab a {w:.2f} kg tool within {d} cm and deliver it to {place_dst}
+      - Move to {place_src}, collect {w:.2f} kg of {adj1} packages within {d} cm, and carry them to {place_dst}
+  scenario21:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 4
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 91
+      - 130
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load in a {d} cm range in {place_src} and transport it to {place_dst}
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), collect {w:.2f} kg of components within {d} cm, and deliver them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst}
+      - Navigate to {place_src}, grab {units} tools within a {d} cm range and deliver it to {place_dst}
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst}
+      - After reaching {place_src}, grasp an {w:.2f} kg component within {d} cm and deliver it to {place_dst}
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst}
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst}
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst}
+      - Navigate to {place_src}, grasp {w:.2f} kg of materials within {d} cm, and transport them to coordinates (x:{x1:.2f},
+        y:{y1:.2f})
+      - Go to {place_src}, collect an {w:.2f} kg box within {d} cm, and deliver it to {place_dst}
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst}
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst}
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst}
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst}
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst}
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst}
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst}
+      - At {place_src}, collect an {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst}
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst}
+      eval:
+      - Move to {place_src}, pick up a {w:.2f} kg load within {d} cm, and deliver it to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and transport them to {place_dst}
+      - At {place_src}, grab {w:.2f} kg of finished products within {d} cm, and move them to {place_dst}
+      - From {place_src}, lift a {w:.2f} kg tool within {d} cm, and carry it to {place_dst}
+      - Go to {place_src}, collect {w:.2f} kg of {adj1} boxes within {d} cm, and deliver them to {place_dst}
+  scenario22:
+    requirements:
+      mobility_level: 2
+      manipulation_level: 4
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 91
+      - 130
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load in a {d} cm range in {place_src} and transport it to {place_dst}
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), collect {w:.2f} kg of components within {d} cm, and deliver them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst}
+      - Navigate to {place_src}, grab {units} tools within a {d} cm range and deliver it to {place_dst}
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst}
+      - After reaching {place_src}, grasp an {w:.2f} kg component within {d} cm and deliver it to {place_dst}
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst}
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst}
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst}
+      - Navigate to {place_src}, grasp {w:.2f} kg of materials within {d} cm, and transport them to coordinates (x:{x1:.2f},
+        y:{y1:.2f})
+      - Go to {place_src}, collect an {w:.2f} kg box within {d} cm, and deliver it to {place_dst}
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst}
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst}
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst}
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst}
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst}
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst}
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst}
+      - At {place_src}, collect an {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst}
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst}
+      eval:
+      - Move to {place_src}, pick up a {w:.2f} kg load within {d} cm, and deliver it to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and transport them to {place_dst}
+      - At {place_src}, grab {w:.2f} kg of finished products within {d} cm, and carry them to {place_dst}
+      - From {place_src}, lift a {w:.2f} kg tool within {d} cm, and deliver it to {place_dst}
+      - Go to {place_src}, collect {w:.2f} kg of {adj1} boxes within {d} cm, and transport them to {place_dst}
+  scenario23:
+    requirements:
+      mobility_level: 3
+      manipulation_level: 1
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 0
+      - 1
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+      - preparation zone
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Navigate to {place_dst} through narrow spaces and wait for further instructions no manipulation required
+      - Navigate to {place_dst} via tight access routes requiring no object handling
+      - Go to {place_dst} through confined paths no manipulation expected
+      - Transport {w:.2f} kg of load from {place_src} to {place_dst} through narrow spaces with zero manipulation required
+      - Deliver spare parts to {place_dst} via narrow corridors with no manipulation needed
+      - Deliver documents and {adj1} packages to {place_dst} through compact areas no need for manipulation
+      - Move from {place_src} to {place_dst} across limited passageways no handling involved
+      - Move to {place_dst} through tight access points without any picking or placing
+      - Move to coordinates (x:{x1:.2f}, y:{y1:.2f}) within constrained space no need for manipulation
+      - Move to {place_dst} through restricted paths carrying {w:.2f} kg of components no picking or placing needed
+      - Move up to {w:.2f} kg items from {place_src} to {place_dst} via narrow aisles without performing any manipulation
+      - Transport {units} tools to {place_dst} through tight passages handling actions not required
+      - Transport {units} tools from coordinates (x:{x1:.2f}, y:{y1:.2f}) to coordinates (x:{x2:.2f}, y:{y2:.2f}) across confined
+        areas no manipulation demand
+      - Navigate to {place_dst} through compact access routes no need for manipulation
+      - Transport {w:.2f} kg of materials from {place_src} to {place_dst} through limited space requiring no object handling
+      - Deliver {adj1} tools and documents to {place_dst} requiring high maneuverability but zero manipulation demand
+      - Move to {place_dst} through compact entryways handling actions not nedeed
+      - Move to coordinates (x:{x1:.2f}, y:{y1:.2f}) within narrow workspace conditions no manipulation required
+      - Transport {w:.2f} kg of finished products to {place_dst} demanding high mobility but no manipulation required
+      - Transport {w:.2f} kg of instruments from {place_src} to {place_dst} with need for high planar maneuverability required
+        but no manipulation expected
+      eval:
+      - Navigate to {place_dst} through tight corridors and await instructions no manipulation required
+      - Move to {place_dst} via narrow passageways while carrying {adj1} components no need for manipulation
+      - Transport {w:.2f} kg of materials from {place_src} to {place_dst} through restricted paths with high maneuverability
+        required but no manipulation demand
+      - Deliver documents and {adj1} packages to {place_dst} via compact aisles no handling involved
+      - Move to {place_dst} through confined entry points while carrying {adj1} tools, high planar mobility required but no
+        manipulation needed
+  scenario24:
+    requirements:
+      mobility_level: 3
+      manipulation_level: 1
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 0
+      - 1
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+      - preparation zone
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Transport {w:.2f} kg load from {place_src} to {place_dst} through narrow corridors no manipulation required
+      - Move up to {w:.2f} kg items from {place_src} to {place_dst} via confined aisles no need for manipulation
+      - Deliver {w:.2f} kg items to {place_dst} through tight access no handling involved
+      - Transport {w:.2f} kg finished goods to {place_dst} via constrained spaces without any pick and place actions
+      - Carry {w:.2f} kg spare parts from {place_src} to {place_dst} through confined areas without performing any manipulation
+      - Move {adj1} boxes from {place_src} to {place_dst} across narrow corridors handling actions not required
+      - Transport {adj1} tools from coordinates (x:{x1:.2f}, y:{y1:.2f}) to coordinates (x:{x2:.2f}, y:{y2:.2f}) through limited
+        passageways no need for manipulation
+      - Transport {units} finished products to coordinates (x:{x1:.2f}, y:{y1:.2f}) via tight acess routes with zero manipulation
+        required
+      - Transport {w:.2f} kg of load from {place_src} to {place_dst} through restricted space with no manipulation required
+      - Deliver {w:.2f} kg of spare parts to {place_dst} via narrow corridors, demanding high mobility but no manipulation
+        required
+      - Deliver {w:.2f} kg of mechanical components to {place_dst} through compact areas no manipulation expected
+      - Move {w:.2f} kg of equipment from {place_src} to {place_dst} across tight passageways requiring no object handling
+      - Move up to {w:.2f} kg of items from {place_src} to {place_dst} via narrow aisles with high maneuverability required
+        but no manipulation demand
+      - Transport {w:.2f} kg of materials from {place_src} to {place_dst} through limited space no handling involved
+      - Transport {w:.2f} kg of instruments from {place_src} to {place_dst} through confined corridors no manipulation required
+      - Transport a {w:.2f} kg load from {place_src} to {place_dst} area through narrow spaces no need for manipulation
+      - Carry {w:.2f} kg of tools from {place_src} to {place_dst} via tight access routes, high planar maneuverability required
+        but no manipulation expected
+      - Deliver {units} items from {place_src} to {place_dst} through tight access points no picking or placing needed
+      - Deliver {w:.2f} kg of materials from {place_src} to {place_dst} through restricted corridors with zero manipulation
+        expected
+      - Transfer {w:.2f} kg of materials from {place_src} to {place_dst} through restricted paths no manipulation required
+      eval:
+      - Move {w:.2f} kg of components from {place_src} to {place_dst} via narrow corridors no manipulation required
+      - Transport {w:.2f} kg of spare parts from {place_src} to {place_dst} through tight passageways no manipulation expected
+      - Carry {w:.2f} kg of tools from {place_src} to {place_dst} across restricted corridors handling actions not required
+      - Deliver {w:.2f} kg of {adj1} boxes from {place_src} to {place_dst} via tight routes with zero mobility expected
+      - Move {w:.2f} kg of instruments from {place_src} to {place_dst} through constrained spaces without performing any manipulation
+  scenario25:
+    requirements:
+      mobility_level: 3
+      manipulation_level: 1
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 0
+      - 1
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Transport {w:.2f} kg load from {place_src} to {place_dst} through narrow paths no manipulation required
+      - Move up to {w:.2f} kg items from {place_src} to {place_dst} via confined aisles no manipulation expected
+      - Deliver {w:.2f} kg items to {place_dst} through tight access points with no manipulation required
+      - Transport {units} finished goods to {place_dst} via restricted spaces no handling involved
+      - Carry {w:.2f} kg spare parts from {place_src} to {place_dst} through constrained spaces without any pick and place
+        actions
+      - Move {adj1} boxes from {place_src} to {place_dst} across narrow corridors handling actions not required
+      - Transport {w:.2f} kg finished products to coordinates (x:{x1:.2f}, y:{y1:.2f}) via tight acess routes no need for
+        manipulation
+      - Transport a {w:.2f} kg load from coordinates (x:{x1:.2f}, y:{y1:.2f}) to coordinates (x:{x2:.2f}, y:{y2:.2f}) through
+        narrow spaces no manipulation needed
+      - Move up to {w:.2f} kg of items from {place_src} to {place_dst} via confined aisles no picking or placing needed
+      - Deliver {w:.2f} kg of goods to {place_dst} through tight access routes without performing any manipulation
+      - Move {adj1} boxes weighing {w:.2f} kg from {place_src} to {place_dst} across narrow corridors no handling involved
+      - Transport {w:.2f} kg of tools from {place_src} to {place_dst} through limited passageways requiring no object handling
+      - Carry {units} tools from {place_src} to {place_dst} via tight access routes with high planar maneuverability required
+        but no manipulation expected
+      - Transport {w:.2f} kg of finished products to {place_dst} via restricted spaces demanding high mobility but no manipulation
+        required
+      - Carry {w:.2f} kg of spare parts from {place_src} to {place_dst} through compact entryways no need for manipulation
+      - Deliver {w:.2f} kg of packed goods to {place_dst} via confined spaces without any pick and place actions
+      - Transport {w:.2f} kg of instruments from {place_src} to {place_dst} through confined corridors no need for manipulation
+      - Transport {w:.2f} kg of materials from {place_src} to {place_dst} through limited space with zero manipulation required
+      - Move {w:.2f} kg of equipment from {place_src} to {place_dst} across tight passageways no manipulation required
+      - Transport a {w:.2f} kg load from {place_src} to {place_dst} through restricted spaces with high maneuverability required
+        but no manipulation expected
+      eval:
+      - Move {w:.2f} kg of components from {place_src} to {place_dst} via narrow corridors no manipulation required
+      - Transport {w:.2f} kg of spare parts from {place_src} to {place_dst} through tight passageways no manipulation expected
+      - 'Carry {w:.2f} kg of tools from {place_src} to {place_dst} across confined spaces without performing any manipulation '
+      - Deliver {w:.2f} kg of {adj1} boxes from {place_src} to {place_dst} via compact entryways handling action not required
+      - Move {w:.2f} kg of equipment from {place_src} to {place_dst} through limited space with zero manipulation expected
+  scenario26:
+    requirements:
+      mobility_level: 3
+      manipulation_level: 2
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 1
+      - 50
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm and transport it to {place_dst} through narrow spaces
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and deliver them to {place_dst} via tight
+        aisles
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Navigate to  {place_src}, grab {units} tools within a {d} cm range, and deliver them to {place_dst} through restricted
+        spaces
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst} via narrow corridors
+      - After reaching {place_src}, grasp a {w:.2f} kg component within {d} cm and deliver it to {place_dst} through tight
+        passages
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst} via confined spaces
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst} through
+        narrow corridors
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst} via restricted
+        corridors
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f}) through tight access routes
+      - Go to {place_src}, collect a {w:.2f} kg box within {d} cm, and deliver it to coordinates (x:{x1:.2f}, y:{y1:.2f})
+        through cofined aisles
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst} with high mobility expected
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst} with high maneuverability
+        required
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst} via confined corridors
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst} through
+        narrow access routes
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst} with high planar
+        maneuverability required
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst} through limited
+        spaces
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst} via compact routes
+      - At {place_src}, collect a {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst} through tight passageways
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst} via narrow paths
+      eval:
+      - Pick up a {w:.2f} kg load within {d} cm and transport it to {place_dst} through tight corridors
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and deliver them to {place_dst} via narrow
+        aisles
+      - Move to {place_src}, pick up {w:.2f} kg of finished products within {d} cm, and deliver them to {place_dst} through
+        restricted paths
+      - Head to {place_src}, grab {w:.2f} tools within {d} cm, and deliver them to {place_dst} via confined corridors
+      - At {place_src}, lift {w:.2f} kg of materials within {d} cm and transport them to {place_dst} through restricted spaces
+  scenario27:
+    requirements:
+      mobility_level: 3
+      manipulation_level: 2
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 1
+      - 50
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstations
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm and transport it to {place_dst} through narrow corridors
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and deliver them to {place_dst} via tight
+        aisles
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Navigate to {place_src}, grab {units} tools within a {d} cm range, and deliver them to {place_dst} through tight access
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst} via narrow corridors
+      - After reaching {place_src}, grasp a {w:.2f} kg component within {d} cm and deliver it to {place_dst} through tight
+        passages
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst} via confined corridors
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst} through
+        compact entryways
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst} via restricted
+        spaces
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f}) through narrow paths
+      - Go to {place_src}, collect a {w:.2f} kg box within {d} cm, and deliver it to coordinates (x:{x1:.2f}, y:{y1:.2f})
+        through confined aisles
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst} with high mobility expected
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst} with high maneuverability
+        required
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst} via confined corridors
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst} through
+        narrow access routes
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst} with high planar
+        maneuverability required
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst} through limited
+        spaces
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst} via narrow routes
+      - At {place_src}, collect a {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst} through tight passageways
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst} via constrained spaces
+      eval:
+      - Pick up a bundle of small electrical components weighing {w:.2f} kg from {place_src} within {d} cm and deliver it
+        to {place_dst} through narrow paths
+      - Navigate to tool {place_src}, collect a {w:.2f} kg set of precision instruments within {d} cm, and transport them
+        to {place_dst} via tight aisles
+      - Move to {place_src}, pick up {w:.2f} kg of fragile parts within {d} cm, and carry them to {place_dst} room through
+        confined spaces
+      - Head to {place_src}, grab {units} tools within {d} cm, and deliver them to {place_dst} through tight access
+      - At {place_src}, pick up {adj1} boxes within {d} cm and move them to {place_dst} via narrow corridors
+  scenario28:
+    requirements:
+      mobility_level: 3
+      manipulation_level: 2
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 1
+      - 50
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm and transport it to {place_dst} through narrow corridors
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and deliver them to {place_dst} via tight
+        aisles
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Navigate to {place_src}, grab {units} tools within a {d} cm range, and deliver them to {place_dst} through tight access
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst} via narrow corridors
+      - After reaching {place_src}, grasp a {w:.2f} kg component within {d} cm and deliver it to {place_dst} through tight
+        passages
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst} via constrained spaces
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst} through
+        narrow routes
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst} via tight acess
+        routes
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f}) through tight access points
+      - Go to {place_src}, collect a {w:.2f} kg box within {d} cm, and deliver it to coordinates (x:{x1:.2f}, y:{y1:.2f})
+        through compact entryways
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst} with high mobility expected
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst} with high maneuverability
+        required
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst} via confined corridors
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst} through
+        narrow access routes
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst} with high planar
+        maneuverability required
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst} through limited
+        spaces
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst} via compact routes
+      - At {place_src}, collect a {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst} through narrow passages
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst} via narrow spaces
+      eval:
+      - Pick up a {w:.2f} kg load within {d} cm and transport it to {place_dst} through narrow corridors
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and deliver them to {place_dst} via tight
+        aisles
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Navigate to {place_src}, grab {units} tools within {d} cm range, and deliver them to {place_dst} through constrained
+        spaces
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst} via tight corridors
+  scenario29:
+    requirements:
+      mobility_level: 3
+      manipulation_level: 3
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 51
+      - 90
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm and transport it to {place_dst} through narrow corridors
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and deliver them to {place_dst} via tight
+        aisles
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Navigate to {place_src}, grab {units} tools within an {d} cm range, and deliver them to {place_dst} through tight
+        access
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst} via tight corridors
+      - After reaching {place_src}, grasp a {w:.2f} kg component within {d} cm and deliver it to {place_dst} through tight
+        passages
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst} via confined corridors
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst} through
+        narrow routes
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst} via restricted
+        spaces
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f}) through tight access points
+      - Go to {place_src}, collect a {w:.2f} kg box within {d} cm, and deliver it to coordinates (x:{x1:.2f}, y:{y1:.2f})
+        through compact entryways
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst} with high mobility expected
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst} with high maneuverability
+        required
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst} via confined corridors
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst} through
+        narrow access routes
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst} with high planar
+        maneuverability required
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst} through limited
+        spaces
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst} via compact routes
+      - At {place_src}, collect a {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst} through narrow passages
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst} via narrow spaces
+      eval:
+      - Retrieve a {w:.2f} kg load within {d} cm and carry it to {place_dst} through narrow corridors
+      - Proceed to {place_src}, gather {w:.2f} kg of components within {d} cm, and transport them to {place_dst} via tight
+        aisles
+      - Head to {place_src}, lift {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Go to {place_src}, collect {units} tool within {d} cm range, and move them to {place_dst} through narrow acess routes
+      - From {place_src}, pick up {w:.2f} kg of materials within {d} cm and carry them to {place_dst} via tight corridors
+  scenario30:
+    requirements:
+      mobility_level: 3
+      manipulation_level: 3
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 51
+      - 90
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm and transport it to {place_dst} through narrow corridors
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and deliver them to {place_dst} via tight
+        aisles
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Navigate to {place_src}, grab {units} tools within an {d} cm range, and deliver them to {place_dst} through tight
+        access
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst} via tight corridors
+      - After reaching {place_src}, grasp a {w:.2f} kg component within {d} cm and deliver it to {place_dst} through tight
+        passages
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst} via confined corridors
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst} through
+        narrow routes
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst} via restricted
+        spaces
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f}) through tight access points
+      - Go to {place_src}, collect a {w:.2f} kg box within {d} cm, and deliver it to coordinates (x:{x1:.2f}, y:{y1:.2f})
+        through compact entryways
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst} with high mobility expected
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst} with high maneuverability
+        required
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst} via confined corridors
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst} through
+        narrow access routes
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst} with high planar
+        maneuverability required
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst} through limited
+        spaces
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst} via compact routes
+      - At {place_src}, collect a {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst} through narrow passages
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst} via narrow spaces
+      eval:
+      - Head to {place_src}, lift a {w:.2f} kg load within {d} cm, and transport it through narrow corridors to {place_dst}
+      - Proceed to {place_src}, collect {w:.2f} kg of components within {d} cm, and carry them to {place_dst} via tight aisles
+      - Go to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Move to {place_src}, grab {units} tools within a {d} cm range, and transport them to {place_dst} through narrow access
+        routes
+      - From {place_src}, retrieve {w:.2f} kg of materials within {d} cm and move them to {place_dst} via tight corridors
+  scenario31:
+    requirements:
+      mobility_level: 3
+      manipulation_level: 3
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 51
+      - 90
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm and transport it to {place_dst} through narrow corridors
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and deliver them to {place_dst} via tight
+        aisles
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Navigate to {place_src}, grab {units} tools within an {d} cm range, and deliver them to {place_dst} through tight
+        access
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst} via tight corridors
+      - After reaching {place_src}, grasp a {w:.2f} kg component within {d} cm and deliver it to {place_dst} through tight
+        passages
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst} via confined corridors
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst} through
+        narrow routes
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst} via restricted
+        spaces
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f}) through tight access points
+      - Go to {place_src}, collect a {w:.2f} kg box within {d} cm, and deliver it to coordinates (x:{x1:.2f}, y:{y1:.2f})
+        through compact entryways
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst} with high mobility expected
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst} with high maneuverability
+        required
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst} via confined corridors
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst} through
+        narrow access routes
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst} with high planar
+        maneuverability required
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst} through limited
+        spaces
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst} via compact routes
+      - At {place_src}, collect a {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst} through narrow passages
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst} via narrow spaces
+      eval:
+      - Head to {place_src}, lift a {w:.2f} kg load within {d} cm, and transport it through narrow passages to {place_dst}
+      - Proceed to {place_src}, collect {w:.2f} kg of components within {d} cm, and carry them to {place_dst} via tight aisles
+      - Go to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Move to {place_src}, grab {units} tools within a {d} cm range, and transport them to {place_dst} through restricted
+        paths
+      - From {place_src}, retrieve {w:.2f} kg of materials within {d} cm and move them to {place_dst} via tight corridors
+  scenario32:
+    requirements:
+      mobility_level: 3
+      manipulation_level: 4
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 91
+      - 130
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm and transport it to {place_dst} through narrow corridors
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and deliver them to {place_dst} via tight
+        aisles
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Navigate to {place_src}, grab {units} tools within an {d} cm range, and deliver them to {place_dst} through tight
+        access
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst} via tight corridors
+      - After reaching {place_src}, grasp a {w:.2f} kg component within {d} cm and deliver it to {place_dst} through tight
+        passages
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst} via confined corridors
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst} through
+        narrow routes
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst} via restricted
+        spaces
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f}) through tight access points
+      - Go to {place_src}, collect a {w:.2f} kg box within {d} cm, and deliver it to coordinates (x:{x1:.2f}, y:{y1:.2f})
+        through compact entryways
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst} with high mobility expected
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst} with high maneuverability
+        required
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst} via confined corridors
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst} through
+        narrow access routes
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst} with high planar
+        maneuverability required
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst} through limited
+        spaces
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst} via compact routes
+      - At {place_src}, collect a {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst} through narrow passages
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst} via narrow spaces
+      eval:
+      - Head to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst} via tight aisles
+      - Proceed to {place_src}, collect {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Go to {place_src}, pick up {units} tools within a {d} cm range, and carry them to {place_dst} through narrow access
+        routes
+      - From {place_src}, retrieve {w:.2f} kg of materials within {d} cm and move them to {place_dst} along narrow corridors
+      - Lift a {w:.2f} kg load from {place_src} within {d} cm and move it along narrow passages to {place_dst}
+  scenario33:
+    requirements:
+      mobility_level: 3
+      manipulation_level: 4
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 91
+      - 130
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm and transport it to {place_dst} through narrow corridors
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and deliver them to {place_dst} via tight
+        aisles
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Navigate to {place_src}, grab {units} tools within an {d} cm range, and deliver them to {place_dst} through tight
+        access
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst} via tight corridors
+      - After reaching {place_src}, grasp a {w:.2f} kg component within {d} cm and deliver it to {place_dst} through tight
+        passages
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst} via confined corridors
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst} through
+        narrow routes
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst} via restricted
+        spaces
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f}) through tight access points
+      - Go to {place_src}, collect a {w:.2f} kg box within {d} cm, and deliver it to coordinates (x:{x1:.2f}, y:{y1:.2f})
+        through compact entryways
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst} with high mobility expected
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst} with high maneuverability
+        required
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst} via confined corridors
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst} through
+        narrow access routes
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst} with high planar
+        maneuverability required
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst} through limited
+        spaces
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst} via compact routes
+      - At {place_src}, collect a {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst} through narrow passages
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst} via narrow spaces
+      eval:
+      - Lift a {w:.2f} kg load from {place_src} within {d} cm and move it along narrow corridors to {place_dst}
+      - Head to {place_src}, gather {w:.2f} kg of components within {d} cm, and transport them to {place_dst} via tight aisles
+      - Proceed to {place_src}, collect {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Go to {place_src}, pick up {units} tools within a {d} cm range, and carry them to {place_dst} through restricted paths
+      - From {place_src}, retrieve {w:.2f} kg of materials within {d} cm and bring them to {place_dst} along tight corridors
+  scenario34:
+    requirements:
+      mobility_level: 3
+      manipulation_level: 4
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 91
+      - 130
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm and transport it to {place_dst} through narrow corridors
+      - Navigate to {place_src}, collect {w:.2f} kg of components within {d} cm, and deliver them to {place_dst} via tight
+        aisles
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver them to {place_dst} through confined
+        spaces
+      - Navigate to {place_src}, grab {units} tools within an {d} cm range, and deliver them to {place_dst} through tight
+        access
+      - At {place_src}, pick up {w:.2f} kg of materials within {d} cm and bring them to {place_dst} via tight corridors
+      - After reaching {place_src}, grasp a {w:.2f} kg component within {d} cm and deliver it to {place_dst} through tight
+        passages
+      - From {place_src}, retrieve {w:.2f} kg of parts within {d} cm and move them to {place_dst} via confined corridors
+      - Head to {place_src}, collect {w:.2f} kg of finished items within a {d} cm radius, and return them to {place_dst} through
+        narrow routes
+      - Move to {place_src}, pick up a {w:.2f} kg load within a {d} cm range, and deliver it to {place_dst} via restricted
+        spaces
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        to coordinates (x:{x2:.2f}, y:{y2:.2f}) through tight access points
+      - Go to {place_src}, collect a {w:.2f} kg box within {d} cm, and deliver it to coordinates (x:{x1:.2f}, y:{y1:.2f})
+        through compact entryways
+      - Travel to {place_src}, pick up a {w:.2f} kg tool within {d} cm, and return to {place_dst} with high mobility expected
+      - Move to {place_src}, lift {w:.2f} kg of components within {d} cm, and transport them to {place_dst} with high maneuverability
+        required
+      - Navigate to {place_src}, grab a {w:.2f} kg part within {d} cm, and deliver it to {place_dst} via confined corridors
+      - Proceed to {place_src}, collect {w:.2f} kg of inspected items within {d} cm, and carry them to {place_dst} through
+        narrow access routes
+      - At {place_src}, grab {w:.2f} kg of spare parts within a {d} cm range and take them to {place_dst} with high planar
+        maneuverability required
+      - From {place_src}, pick up {adj1} packages weighing {w:.2f} kg within {d} cm and move them to {place_dst} through limited
+        spaces
+      - Go to {place_src}, grasp {w:.2f} kg of products within {d} cm, and carry them to {place_dst} via compact routes
+      - At {place_src}, collect a {w:.2f} kg tool within a {d} cm reach and bring it to {place_dst} through narrow passages
+      - Navigate to {place_src}, grab {w:.2f} kg of items within {d} cm, and move them to {place_dst} via narrow spaces
+      eval:
+      - Retrieve a {w:.2f} kg load within {d} cm and deliver it to {place_dst} through narrow corridors
+      - Proceed to {place_src}, collect {w:.2f} kg of components within {d} cm, and transport them to {place_dst} via tight
+        aisles
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and carry them to {place_dst} through confined
+        spaces
+      - Navigate to {place_src}, grab {units} tools within {d} cm range, and bring them to {place_dst} via narrow access routes
+      - From {place_src}, lift {w:.2f} kg of materials within {d} cm and move them to the {place_dst} through compact entryways
+  scenario35:
+    requirements:
+      mobility_level: 4
+      manipulation_level: 1
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 0
+      - 1
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Patrol {place_dst} area across stepped and uneven ground, no manipulation required
+      - Go through stepped and uneven terrain to reach coordinates (x:{x1:.2f}, y:{y1:.2f}) with no manipulation required
+      - Transport {w:.2f} kg of load across stairways and irregular ground from {place_src} to {place_dst}, handling actions
+        not required
+      - Carry {w:.2f} kg of load up stairs and over level changes to upper office requiring no object handling
+      - Transport {adj1} tools across uneven ground and obstacles to upper platform no need for manipulation
+      - Climb a ramp and stepped surface while carrying {w:.2f} kg of components to coordinates (x:{x1:.2f}, y:{y1:.2f}) without
+        performing any manipulation
+      - Transport {w:.2f} kg of {adj1} tools across uneven floors to reach upper office, no manipulation required
+      - Carry {units} tools up ramps and stairs through compact, constrained areas to reach upper floor, no manipulation expected
+      - Transport {w:.2f} kg of {adj1} instruments through restricted access points and stairways to reach upper room, requiring
+        no object handling
+      - Carry {adj1} items through a cluttered, unstructured environment to reach upper office, no manipulation required
+      - Move from coordinates (x:{x1:.2f}, y:{y1:.2f}) to coordinates (x:{x2:.2f}, y:{y2:.2f}) through uneven terrain, no
+        need for manipulation
+      - Transport {w:.2f} kg of load to {place_dst} over irregular floor with elevation changes, no manipulation needed
+      - Transport {units} boxes across rough, discontinuous terrain to {place_dst}, with zero manipulation demanded
+      - Move from {place_src} to {place_dst} over steps and narrow passages while carrying {w:.2f} kg of components, without
+        any pick and place actions
+      - Navigate through stepped walkways and uneven surfaces from {place_src} to {place_dst} carrying {adj1} equipment, no
+        object handling needed
+      - Cross irregular terrain with multiple elevation changes carrying {w:.2f} kg of load to reach upper level, no manipulation
+        expected
+      - Move through stairways and narrow, uneven corridors to coordinates (x:{x1:.2f}, y:{y1:.2f}) carrying {w:.2f} kg, no
+        manipulation required
+      - Move across stairways and irregular floor to transport {adj1} equipment to {place_dst}, no object handling involved
+      - Proceed through irregular floor and stepped surfaces to coordinates (x:{x1:.2f}, y:{y1:.2f}) carrying {units} items,
+        handling actions not required
+      - Move through stairs and uneven surfaces to reach upper level  while carrying {w:.2f} kg, no manipulation required
+      eval:
+      - Patrol {place_dst} area through irregular floor carrying {w:.2f} kg of components, no manipulation required
+      - Move across a sloped surface transporting {w:.2f} kg of tools {place_dst}, requiring no object handling
+      - Carry {w:.2f} kg of {adj1} parts through stairways and narrow, uneven corridors to get to {place_dst}, no need for
+        manipulation
+      - Climb a ramp and stepped surface while transporting {w:.2f} kg of equipment to the upper platform, with zero manipulation
+        demanded
+      - Cross irregular floor and stepped surfaces carrying {w:.2f} kg of {adj1} instruments to the {place_dst}, no manipulation
+        needed
+  scenario36:
+    requirements:
+      mobility_level: 4
+      manipulation_level: 1
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 0
+      - 1
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Patrol {place_dst} area across stepped and uneven ground, no manipulation required
+      - Go through stepped and uneven terrain to reach coordinates (x:{x1:.2f}, y:{y1:.2f}) with no manipulation required
+      - Transport {w:.2f} kg of load across stairways and irregular ground from {place_src} to {place_dst}, handling actions
+        not required
+      - Carry {w:.2f} kg of load up stairs and over level changes to upper office requiring no object handling
+      - Transport {adj1} tools across uneven ground and obstacles to upper platform no need for manipulation
+      - Climb a ramp and stepped surface while carrying {w:.2f} kg of components to coordinates (x:{x1:.2f}, y:{y1:.2f}) without
+        performing any manipulation
+      - Transport {w:.2f} kg of {adj1} tools across uneven floors to reach upper office, no manipulation required
+      - Carry {units} tools up ramps and stairs through compact, constrained areas to reach upper floor, no manipulation expected
+      - Transport {w:.2f} kg of {adj1} instruments through restricted access points and stairways to reach upper room, requiring
+        no object handling
+      - Carry {adj1} items through a cluttered, unstructured environment to reach upper office, no manipulation required
+      - Move from coordinates (x:{x1:.2f}, y:{y1:.2f}) to coordinates (x:{x2:.2f}, y:{y2:.2f}) through uneven terrain, no
+        need for manipulation
+      - Transport {w:.2f} kg of load to {place_dst} over irregular floor with elevation changes, no manipulation needed
+      - Transport {units} boxes across rough, discontinuous terrain to {place_dst}, with zero manipulation demanded
+      - Move from {place_src} to {place_dst} over steps and narrow passages while carrying {w:.2f} kg of components, without
+        any pick and place actions
+      - Navigate through stepped walkways and uneven surfaces from {place_src} to {place_dst} carrying {adj1} equipment, no
+        object handling needed
+      - Cross irregular terrain with multiple elevation changes carrying {w:.2f} kg of load to reach upper level, no manipulation
+        expected
+      - Move through stairways and narrow, uneven corridors to coordinates (x:{x1:.2f}, y:{y1:.2f}) carrying {w:.2f} kg, no
+        manipulation required
+      - Move across stairways and irregular floor to transport {adj1} equipment to {place_dst}, no object handling involved
+      - Proceed through irregular floor and stepped surfaces to coordinates (x:{x1:.2f}, y:{y1:.2f}) carrying {units} items,
+        handling actions not required
+      - Move through stairs and uneven surfaces to reach upper level  while carrying {w:.2f} kg, no manipulation required
+      eval:
+      - Carry {w:.2f} kg of components across uneven terrain to {place_dst}, no manipulation required
+      - Move {w:.2f} kg of tools across stairways and irregular floor from {place_src} to {place_dst}, no need for manipulation
+      - Transport {w:.2f} kg of {adj1} parts from {place_src} to {place_dst} through narrow aisles and irregular terrain,
+        no handling actions involved
+      - Climb the stairs carrying {w:.2f} kg of equipment to the upper platform, handling actions not required
+      - Patrol {place_dst} crossing uneven terrain while transporting {w:.2f} kg of {adj1} items, no manipulation needed
+  scenario37:
+    requirements:
+      mobility_level: 4
+      manipulation_level: 1
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 0
+      - 1
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Patrol {place_dst} area across stepped and uneven ground, no manipulation required
+      - Go through stepped and uneven terrain to reach coordinates (x:{x1:.2f}, y:{y1:.2f}) with no manipulation required
+      - Transport {w:.2f} kg of load across stairways and irregular ground from {place_src} to {place_dst}, handling actions
+        not required
+      - Carry {w:.2f} kg of load up stairs and over level changes to upper office requiring no object handling
+      - Transport {adj1} tools across uneven ground and obstacles to upper platform no need for manipulation
+      - Climb a ramp and stepped surface while carrying {w:.2f} kg of components to coordinates (x:{x1:.2f}, y:{y1:.2f}) without
+        performing any manipulation
+      - Transport {w:.2f} kg of {adj1} tools across uneven floors to reach upper office, no manipulation required
+      - Carry {units} tools up ramps and stairs through compact, constrained areas to reach upper floor, no manipulation expected
+      - Transport {w:.2f} kg of {adj1} instruments through restricted access points and stairways to reach upper room, requiring
+        no object handling
+      - Carry {adj1} items through a cluttered, unstructured environment to reach upper office, no manipulation required
+      - Move from coordinates (x:{x1:.2f}, y:{y1:.2f}) to coordinates (x:{x2:.2f}, y:{y2:.2f}) through uneven terrain, no
+        need for manipulation
+      - Transport {w:.2f} kg of load to {place_dst} over irregular floor with elevation changes, no manipulation needed
+      - Transport {units} boxes across rough, discontinuous terrain to {place_dst}, with zero manipulation demanded
+      - Move from {place_src} to {place_dst} over steps and narrow passages while carrying {w:.2f} kg of components, without
+        any pick and place actions
+      - Navigate through stepped walkways and uneven surfaces from {place_src} to {place_dst} carrying {adj1} equipment, no
+        object handling needed
+      - Cross irregular terrain with multiple elevation changes carrying {w:.2f} kg of load to reach upper level, no manipulation
+        expected
+      - Move through stairways and narrow, uneven corridors to coordinates (x:{x1:.2f}, y:{y1:.2f}) carrying {w:.2f} kg, no
+        manipulation required
+      - Move across stairways and irregular floor to transport {adj1} equipment to {place_dst}, no object handling involved
+      - Proceed through irregular floor and stepped surfaces to coordinates (x:{x1:.2f}, y:{y1:.2f}) carrying {units} items,
+        handling actions not required
+      - Move through stairs and uneven surfaces to reach upper level  while carrying {w:.2f} kg, no manipulation required
+      eval:
+      - Carry {w:.2f} kg of equipment across uneven terrain from {place_src} to {place_dst}, no manipulation required
+      - Move {w:.2f} kg of tools up a ramp to the {place_dst}, no need for manipulation
+      - Transport {w:.2f} kg of components through uneven ground and obstacles to reach {place_dst}, no handling involved
+      - Climb the stairs carrying {w:.2f} kg of load to the upper platform, without performing any manipulation
+      - Patrol {place_dst} through irregular terrain while transporting {w:.2f} kg of {units} items, no manipulation needed
+  scenario38:
+    requirements:
+      mobility_level: 4
+      manipulation_level: 2
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 1
+      - 50
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm in {place_src} and transport it to {place_dst} through stairs
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver to {place_dst} via uneven terrain
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver to {place_dst} through steps
+      - Navigate to {place_src}, pick up {units} tools within {d} cm, and deliver to {place_dst} via irregular terrain
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver them through stairs and uneven
+        surfaces to {place_dst}
+      - Move to {place_src}, grasp a {w:.2f} kg tool within {d} cm, and carry it through irregular floor and stepped surfaces
+        to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of samples within {d} cm, and transport them via uneven terrain to {place_dst}
+      - Pick up {w:.2f} kg of load within {d} cm and move from {place_src} to {place_dst} through irregular terrain with multiple
+        elevation changes
+      - Deliver {w:.2f} kg of spare parts to {place_src}, after collecting them within {d} cm in {place_dst} and climbing
+        stairs of upper level
+      - Pick up {w:.2f} kg of documents and {adj1} packages within {d} cm in {place_src} and deliver them to {place_dst} crossing
+        stairways and irregular ground
+      - Move to coordinates (x:{x1:.2f}, y:{y1:.2f}) to retrieve a {w:.2f} kg component within {d} cm and deliver it through
+        steps and narrow passages to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Navigate to {place_src}, grasp {w:.2f} kg of tools within {d} cm, and deliver them through stepped and uneven terrain
+        to {place_dst}
+      - Pick up {w:.2f} kg of inspection items within {d} cm in {place_src} and move to {place_dst} via irregular floor
+      - Collect {w:.2f} kg of {adj1} tools within {d} cm in {place_src} and transport them to {place_dst} through uneven ground
+      - Pick up {w:.2f} kg of {adj1} instruments within {d} cm from {place_src} and deliver them to {place_dst} across uneven
+        ground and obstacles
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        through stairs to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - From {place_src}, pick up {w:.2f} kg of components within {d} cm and deliver them to {place_dst} through irregular
+        terrain
+      - Move to {place_src}, pick up {w:.2f} kg of items within {d} cm, and carry them over steps and narrow passages to {place_dst}
+      - Retrieve a {w:.2f} kg finished product within {d} cm in {place_src} and deliver it to {place_dst} via steep ramps
+        and obstacles
+      - Move through irregular floor and stepped surfaces to {place_src} to pick up {w:.2f} kg of load within {d} cm and deliver
+        it to {place_dst}
+      eval:
+      - Collect {w:.2f} kg of components within {d} cm from {place_src} and transport them to {place_dst} via irregular terrain
+      - Move to {place_src}, pick up {w:.2f} kg of tools within {d} cm, and carry them through uneven floor to {place_dst}
+      - Retrieve {w:.2f} kg of {adj1} packages within {d} cm in {place_src} and deliver them to {place_dst} via steep ramps
+        and obstacles
+      - Pick up {w:.2f} kg of materials within {d} cm at {place_src} and move them across  uneven ground to coordinates (x:{x1:.2f},
+        y:{y1:.2f})
+      - Navigate to {place_src}, grasp {w:.2f} kg of instruments within {d} cm, and transport them through stepped and uneven
+        terrain to {place_dst}
+  scenario39:
+    requirements:
+      mobility_level: 4
+      manipulation_level: 2
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 1
+      - 50
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm in {place_src} and transport it to {place_dst} through stairs
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver to {place_dst} via uneven terrain
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver to {place_dst} through steps
+      - Navigate to {place_src}, pick up {units} tools within {d} cm, and deliver to {place_dst} via irregular terrain
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver them through stairs and uneven
+        surfaces to {place_dst}
+      - Move to {place_src}, grasp a {w:.2f} kg tool within {d} cm, and carry it through irregular floor and stepped surfaces
+        to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of samples within {d} cm, and transport them via uneven terrain to {place_dst}
+      - Pick up {w:.2f} kg of load within {d} cm and move from {place_src} to {place_dst} through irregular terrain with multiple
+        elevation changes
+      - Deliver {w:.2f} kg of spare parts to {place_src}, after collecting them within {d} cm in {place_dst} and climbing
+        stairs of upper level
+      - Pick up {w:.2f} kg of documents and {adj1} packages within {d} cm in {place_src} and deliver them to {place_dst} crossing
+        stairways and irregular ground
+      - Move to coordinates (x:{x1:.2f}, y:{y1:.2f}) to retrieve a {w:.2f} kg component within {d} cm and deliver it through
+        steps and narrow passages to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Navigate to {place_src}, grasp {w:.2f} kg of tools within {d} cm, and deliver them through stepped and uneven terrain
+        to {place_dst}
+      - Pick up {w:.2f} kg of inspection items within {d} cm in {place_src} and move to {place_dst} via irregular floor
+      - Collect {w:.2f} kg of {adj1} tools within {d} cm in {place_src} and transport them to {place_dst} through uneven ground
+      - Pick up {w:.2f} kg of {adj1} instruments within {d} cm from {place_src} and deliver them to {place_dst} across uneven
+        ground and obstacles
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        through stairs to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - From {place_src}, pick up {w:.2f} kg of components within {d} cm and deliver them to {place_dst} through irregular
+        terrain
+      - Move to {place_src}, pick up {w:.2f} kg of items within {d} cm, and carry them over steps and narrow passages to {place_dst}
+      - Retrieve a {w:.2f} kg finished product within {d} cm in {place_src} and deliver it to {place_dst} via steep ramps
+        and obstacles
+      - Move through irregular floor and stepped surfaces to {place_src} to pick up {w:.2f} kg of load within {d} cm and deliver
+        it to {place_dst}
+      eval:
+      - Pick up {w:.2f} kg of components within {d} cm at {place_dst} and carry them via narrow staircases to upper office
+      - Move to {place_src}, retrieve {w:.2f} kg of tools within {d} cm, and deliver them through uneven floor to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of packages within {d} cm, and transport them across cuneven ground and
+        obstacles to {place_dst}
+      - Pick up {w:.2f} kg of {adj1} instruments within {d} cm at {place_src} and carry them through irregular terrain with
+        multiple elevation changes to {place_dst}
+      - From {place_src}, grab {w:.2f} kg of materials within {d} cm and move them via irregular floor to coordinates (x:{x1:.2f},
+        y:{y1:.2f})
+  scenario40:
+    requirements:
+      mobility_level: 4
+      manipulation_level: 2
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 1
+      - 50
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm in {place_src} and transport it to {place_dst} through stairs
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver to {place_dst} via uneven terrain
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver to {place_dst} through steps
+      - Navigate to {place_src}, pick up {units} tools within {d} cm, and deliver to {place_dst} via irregular terrain
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver them through stairs and uneven
+        surfaces to {place_dst}
+      - Move to {place_src}, grasp a {w:.2f} kg tool within {d} cm, and carry it through irregular floor and stepped surfaces
+        to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of samples within {d} cm, and transport them via uneven terrain to {place_dst}
+      - Pick up {w:.2f} kg of load within {d} cm and move from {place_src} to {place_dst} through irregular terrain with multiple
+        elevation changes
+      - Deliver {w:.2f} kg of spare parts to {place_src}, after collecting them within {d} cm in {place_dst} and climbing
+        stairs of upper level
+      - Pick up {w:.2f} kg of documents and {adj1} packages within {d} cm in {place_src} and deliver them to {place_dst} crossing
+        stairways and irregular ground
+      - Move to coordinates (x:{x1:.2f}, y:{y1:.2f}) to retrieve a {w:.2f} kg component within {d} cm and deliver it through
+        steps and narrow passages to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Navigate to {place_src}, grasp {w:.2f} kg of tools within {d} cm, and deliver them through stepped and uneven terrain
+        to {place_dst}
+      - Pick up {w:.2f} kg of inspection items within {d} cm in {place_src} and move to {place_dst} via irregular floor
+      - Collect {w:.2f} kg of {adj1} tools within {d} cm in {place_src} and transport them to {place_dst} through uneven ground
+      - Pick up {w:.2f} kg of {adj1} instruments within {d} cm from {place_src} and deliver them to {place_dst} across uneven
+        ground and obstacles
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        through stairs to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - From {place_src}, pick up {w:.2f} kg of components within {d} cm and deliver them to {place_dst} through irregular
+        terrain
+      - Move to {place_src}, pick up {w:.2f} kg of items within {d} cm, and carry them over steps and narrow passages to {place_dst}
+      - Retrieve a {w:.2f} kg finished product within {d} cm in {place_src} and deliver it to {place_dst} via steep ramps
+        and obstacles
+      - Move through irregular floor and stepped surfaces to {place_src} to pick up {w:.2f} kg of load within {d} cm and deliver
+        it to {place_dst}
+      eval:
+      - Pick up {w:.2f} kg of components within {d} cm at {place_dst} and transport them through narrow staircases to upper
+        floor
+      - Move to {place_src}, retrieve {w:.2f} kg of tools within {d} cm, and deliver them via uneven floor to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of materials within {d} cm, and carry them across uneven ground and obstacles
+        to {place_dst}
+      - Pick up {w:.2f} kg of {adj1} instruments within {d} cm at station C and transport them through irregular floor and
+        stepped surfaces {place_dst}
+      - Go to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of load within {d} cm and move it through irregular terrain
+        to {place_dst}
+  scenario41:
+    requirements:
+      mobility_level: 4
+      manipulation_level: 3
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 51
+      - 90
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm in {place_src} and transport it to {place_dst} through stairs
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver to {place_dst} via uneven terrain
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver to {place_dst} through steps
+      - Navigate to {place_src}, pick up {units} tools within {d} cm, and deliver to {place_dst} via irregular terrain
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver them through stairs and uneven
+        surfaces to {place_dst}
+      - Move to {place_src}, grasp a {w:.2f} kg tool within {d} cm, and carry it through irregular floor and stepped surfaces
+        to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of samples within {d} cm, and transport them via uneven terrain to {place_dst}
+      - Pick up {w:.2f} kg of load within {d} cm and move from {place_src} to {place_dst} through irregular terrain with multiple
+        elevation changes
+      - Deliver {w:.2f} kg of spare parts to {place_src}, after collecting them within {d} cm in {place_dst} and climbing
+        stairs of upper level
+      - Pick up {w:.2f} kg of documents and {adj1} packages within {d} cm in {place_src} and deliver them to {place_dst} crossing
+        stairways and irregular ground
+      - Move to coordinates (x:{x1:.2f}, y:{y1:.2f}) to retrieve a {w:.2f} kg component within {d} cm and deliver it through
+        steps and narrow passages to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Navigate to {place_src}, grasp {w:.2f} kg of tools within {d} cm, and deliver them through stepped and uneven terrain
+        to {place_dst}
+      - Pick up {w:.2f} kg of inspection items within {d} cm in {place_src} and move to {place_dst} via irregular floor
+      - Collect {w:.2f} kg of {adj1} tools within {d} cm in {place_src} and transport them to {place_dst} through uneven ground
+      - Pick up {w:.2f} kg of {adj1} instruments within {d} cm from {place_src} and deliver them to {place_dst} across uneven
+        ground and obstacles
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        through stairs to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - From {place_src}, pick up {w:.2f} kg of components within {d} cm and deliver them to {place_dst} through irregular
+        terrain
+      - Move to {place_src}, pick up {w:.2f} kg of items within {d} cm, and carry them over steps and narrow passages to {place_dst}
+      - Retrieve a {w:.2f} kg finished product within {d} cm in {place_src} and deliver it to {place_dst} via steep ramps
+        and obstacles
+      - Move through irregular floor and stepped surfaces to {place_src} to pick up {w:.2f} kg of load within {d} cm and deliver
+        it to {place_dst}
+      eval:
+      - Pick and transport a {w:.2f} kg package within {d} cm from {place_src} to {place_dst} via steep ramps and obstacles
+      - Retrieve {w:.2f} kg of components within {d} cm at {place_src} and carry them through uneven ground to {place_dst}
+      - Pick up {w:.2f} kg of {adj1} tools within {d} cm in {place_src} and deliver them to {place_dst} across uneven ground
+        and obstacles
+      - Navigate to {place_src}, collect {w:.2f} kg of materials within {d} cm, and transport them via irregular floor to
+        {place_dst}
+      - Move to {place_src}, grasp {w:.2f} kg of items within {d} cm, and carry them through irregular floor to {place_dst}
+  scenario42:
+    requirements:
+      mobility_level: 4
+      manipulation_level: 3
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 51
+      - 90
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm in {place_src} and transport it to {place_dst} through stairs
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver to {place_dst} via uneven terrain
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver to {place_dst} through steps
+      - Navigate to {place_src}, pick up {units} tools within {d} cm, and deliver to {place_dst} via irregular terrain
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver them through stairs and uneven
+        surfaces to {place_dst}
+      - Move to {place_src}, grasp a {w:.2f} kg tool within {d} cm, and carry it through irregular floor and stepped surfaces
+        to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of samples within {d} cm, and transport them via uneven terrain to {place_dst}
+      - Pick up {w:.2f} kg of load within {d} cm and move from {place_src} to {place_dst} through irregular terrain with multiple
+        elevation changes
+      - Deliver {w:.2f} kg of spare parts to {place_src}, after collecting them within {d} cm in {place_dst} and climbing
+        stairs of upper level
+      - Pick up {w:.2f} kg of documents and {adj1} packages within {d} cm in {place_src} and deliver them to {place_dst} crossing
+        stairways and irregular ground
+      - Move to coordinates (x:{x1:.2f}, y:{y1:.2f}) to retrieve a {w:.2f} kg component within {d} cm and deliver it through
+        steps and narrow passages to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Navigate to {place_src}, grasp {w:.2f} kg of tools within {d} cm, and deliver them through stepped and uneven terrain
+        to {place_dst}
+      - Pick up {w:.2f} kg of inspection items within {d} cm in {place_src} and move to {place_dst} via irregular floor
+      - Collect {w:.2f} kg of {adj1} tools within {d} cm in {place_src} and transport them to {place_dst} through uneven ground
+      - Pick up {w:.2f} kg of {adj1} instruments within {d} cm from {place_src} and deliver them to {place_dst} across uneven
+        ground and obstacles
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        through stairs to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - From {place_src}, pick up {w:.2f} kg of components within {d} cm and deliver them to {place_dst} through irregular
+        terrain
+      - Move to {place_src}, pick up {w:.2f} kg of items within {d} cm, and carry them over steps and narrow passages to {place_dst}
+      - Retrieve a {w:.2f} kg finished product within {d} cm in {place_src} and deliver it to {place_dst} via steep ramps
+        and obstacles
+      - Move through irregular floor and stepped surfaces to {place_src} to pick up {w:.2f} kg of load within {d} cm and deliver
+        it to {place_dst}
+      eval:
+      - Carry a {w:.2f} kg load within {d} cm from {place_src} to {place_dst} via irregular floor
+      - Retrieve {w:.2f} kg of components within {d} cm at {place_src} and transport them across uneven walkways to {place_dst}
+      - Pick up {w:.2f} kg of tools within {d} cm from {place_src} and deliver them through stepped and uneven terrain to
+        {place_dst}
+      - Move to {place_src}, grasp {w:.2f} kg of items within {d} cm, and carry them through steps and narrow passages to
+        {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of packages within {d} cm, and deliver them via compact stairs to {place_dst}
+  scenario43:
+    requirements:
+      mobility_level: 4
+      manipulation_level: 3
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 51
+      - 90
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm in {place_src} and transport it to {place_dst} through stairs
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver to {place_dst} via uneven terrain
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver to {place_dst} through steps
+      - Navigate to {place_src}, pick up {units} tools within {d} cm, and deliver to {place_dst} via irregular terrain
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver them through stairs and uneven
+        surfaces to {place_dst}
+      - Move to {place_src}, grasp a {w:.2f} kg tool within {d} cm, and carry it through irregular floor and stepped surfaces
+        to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of samples within {d} cm, and transport them via uneven terrain to {place_dst}
+      - Pick up {w:.2f} kg of load within {d} cm and move from {place_src} to {place_dst} through irregular terrain with multiple
+        elevation changes
+      - Deliver {w:.2f} kg of spare parts to {place_src}, after collecting them within {d} cm in {place_dst} and climbing
+        stairs of upper level
+      - Pick up {w:.2f} kg of documents and {adj1} packages within {d} cm in {place_src} and deliver them to {place_dst} crossing
+        stairways and irregular ground
+      - Move to coordinates (x:{x1:.2f}, y:{y1:.2f}) to retrieve a {w:.2f} kg component within {d} cm and deliver it through
+        steps and narrow passages to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Navigate to {place_src}, grasp {w:.2f} kg of tools within {d} cm, and deliver them through stepped and uneven terrain
+        to {place_dst}
+      - Pick up {w:.2f} kg of inspection items within {d} cm in {place_src} and move to {place_dst} via irregular floor
+      - Collect {w:.2f} kg of {adj1} tools within {d} cm in {place_src} and transport them to {place_dst} through uneven ground
+      - Pick up {w:.2f} kg of {adj1} instruments within {d} cm from {place_src} and deliver them to {place_dst} across uneven
+        ground and obstacles
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        through stairs to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - From {place_src}, pick up {w:.2f} kg of components within {d} cm and deliver them to {place_dst} through irregular
+        terrain
+      - Move to {place_src}, pick up {w:.2f} kg of items within {d} cm, and carry them over steps and narrow passages to {place_dst}
+      - Retrieve a {w:.2f} kg finished product within {d} cm in {place_src} and deliver it to {place_dst} via steep ramps
+        and obstacles
+      - Move through irregular floor and stepped surfaces to {place_src} to pick up {w:.2f} kg of load within {d} cm and deliver
+        it to {place_dst}
+      eval:
+      - Carry a {w:.2f} kg load within {d} cm from {place_src} to {place_dst} via irregular terrain
+      - Retrieve {w:.2f} kg of components within {d} cm at {place_src} and transport them through uneven ground to {place_dst}
+      - Pick up {w:.2f} kg of tools within {d} cm from {place_src} and deliver them via steep ramps and obstacles to {place_dst}
+      - Move to {place_src}, grasp {w:.2f} kg of items within {d} cm, and carry them through irregular floor and stepped surfaces
+        to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of packages within {d} cm, and transport them through stairs to {place_dst}
+  scenario44:
+    requirements:
+      mobility_level: 4
+      manipulation_level: 4
+      payload_level: 1
+    ranges:
+      weight_kg:
+      - 0.01
+      - 3.0
+      reach_cm:
+      - 91
+      - 130
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 1
+      - 2
+      - 3
+      size_adjectives:
+      - small
+      - tiny
+      - lightweight
+      - delicate
+      - light
+      - small light
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm in {place_src} and transport it to {place_dst} through stairs
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver to {place_dst} via uneven terrain
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver to {place_dst} through steps
+      - Navigate to {place_src}, pick up {units} tools within {d} cm, and deliver to {place_dst} via irregular terrain
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver them through stairs and uneven
+        surfaces to {place_dst}
+      - Move to {place_src}, grasp a {w:.2f} kg tool within {d} cm, and carry it through irregular floor and stepped surfaces
+        to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of samples within {d} cm, and transport them via uneven terrain to {place_dst}
+      - Pick up {w:.2f} kg of load within {d} cm and move from {place_src} to {place_dst} through irregular terrain with multiple
+        elevation changes
+      - Deliver {w:.2f} kg of spare parts to {place_src}, after collecting them within {d} cm in {place_dst} and climbing
+        stairs of upper level
+      - Pick up {w:.2f} kg of documents and {adj1} packages within {d} cm in {place_src} and deliver them to {place_dst} crossing
+        stairways and irregular ground
+      - Move to coordinates (x:{x1:.2f}, y:{y1:.2f}) to retrieve a {w:.2f} kg component within {d} cm and deliver it through
+        steps and narrow passages to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Navigate to {place_src}, grasp {w:.2f} kg of tools within {d} cm, and deliver them through stepped and uneven terrain
+        to {place_dst}
+      - Pick up {w:.2f} kg of inspection items within {d} cm in {place_src} and move to {place_dst} via irregular floor
+      - Collect {w:.2f} kg of {adj1} tools within {d} cm in {place_src} and transport them to {place_dst} through uneven ground
+      - Pick up {w:.2f} kg of {adj1} instruments within {d} cm from {place_src} and deliver them to {place_dst} across uneven
+        ground and obstacles
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        through stairs to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - From {place_src}, pick up {w:.2f} kg of components within {d} cm and deliver them to {place_dst} through irregular
+        terrain
+      - Move to {place_src}, pick up {w:.2f} kg of items within {d} cm, and carry them over steps and narrow passages to {place_dst}
+      - Retrieve a {w:.2f} kg finished product within {d} cm in {place_src} and deliver it to {place_dst} via steep ramps
+        and obstacles
+      - Move through irregular floor and stepped surfaces to {place_src} to pick up {w:.2f} kg of load within {d} cm and deliver
+        it to {place_dst}
+      eval:
+      - Transport a {w:.2f} kg load from {place_src} within {d} cm to {place_dst} via narrow stairways
+      - Move to {place_src}, retrieve {w:.2f} kg of components within {d} cm, and deliver them across uneven floors to {place_dst}
+      - Collect {units} finished items within {d} cm at {place_src} and carry them to {place_dst} through sloped walkways
+      - Navigate through {place_src}, pick up {units} tool within {d} cm, and move them via irregular terrain to {place_dst}
+      - From {place_src}, pick up {w:.2f} kg of materials within {d} cm and deliver them to {place_dst} via steep ramps and
+        obstacles
+  scenario45:
+    requirements:
+      mobility_level: 4
+      manipulation_level: 4
+      payload_level: 2
+    ranges:
+      weight_kg:
+      - 3.1
+      - 5.0
+      reach_cm:
+      - 91
+      - 130
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 4
+      - 5
+      - 6
+      size_adjectives:
+      - medium
+      - heavy
+      - small heavy
+      - medium-weight
+      - compact heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm in {place_src} and transport it to {place_dst} through stairs
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver to {place_dst} via uneven terrain
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver to {place_dst} through steps
+      - Navigate to {place_src}, pick up {units} tools within {d} cm, and deliver to {place_dst} via irregular terrain
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver them through stairs and uneven
+        surfaces to {place_dst}
+      - Move to {place_src}, grasp a {w:.2f} kg tool within {d} cm, and carry it through irregular floor and stepped surfaces
+        to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of samples within {d} cm, and transport them via uneven terrain to {place_dst}
+      - Pick up {w:.2f} kg of load within {d} cm and move from {place_src} to {place_dst} through irregular terrain with multiple
+        elevation changes
+      - Deliver {w:.2f} kg of spare parts to {place_src}, after collecting them within {d} cm in {place_dst} and climbing
+        stairs of upper level
+      - Pick up {w:.2f} kg of documents and {adj1} packages within {d} cm in {place_src} and deliver them to {place_dst} crossing
+        stairways and irregular ground
+      - Move to coordinates (x:{x1:.2f}, y:{y1:.2f}) to retrieve a {w:.2f} kg component within {d} cm and deliver it through
+        steps and narrow passages to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Navigate to {place_src}, grasp {w:.2f} kg of tools within {d} cm, and deliver them through stepped and uneven terrain
+        to {place_dst}
+      - Pick up {w:.2f} kg of inspection items within {d} cm in {place_src} and move to {place_dst} via irregular floor
+      - Collect {w:.2f} kg of {adj1} tools within {d} cm in {place_src} and transport them to {place_dst} through uneven ground
+      - Pick up {w:.2f} kg of {adj1} instruments within {d} cm from {place_src} and deliver them to {place_dst} across uneven
+        ground and obstacles
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        through stairs to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - From {place_src}, pick up {w:.2f} kg of components within {d} cm and deliver them to {place_dst} through irregular
+        terrain
+      - Move to {place_src}, pick up {w:.2f} kg of items within {d} cm, and carry them over steps and narrow passages to {place_dst}
+      - Retrieve a {w:.2f} kg finished product within {d} cm in {place_src} and deliver it to {place_dst} via steep ramps
+        and obstacles
+      - Move through irregular floor and stepped surfaces to {place_src} to pick up {w:.2f} kg of load within {d} cm and deliver
+        it to {place_dst}
+      eval:
+      - Pick and carry a {w:.2f} kg load from {place_src} within {d} cm and transport it to {place_dst} via sloped stairways
+      - Move to {place_src}, collect {w:.2f} kg of components within {d} cm, and deliver them through uneven service corridors
+        to {place_dst}
+      - Retrieve {units} finished items within {d} cm at the {place_src} and transport them to {place_dst} via narrow steps
+      - Navigate through {place_src}, pick up {units} tools within {d} cm, and deliver them to {place_dst} using irregular
+        walkways
+      - From {place_src}, grasp {w:.2f} kg of materials within {d} cm and carry them to {place_dst} through steep ramps
+  scenario46:
+    requirements:
+      mobility_level: 4
+      manipulation_level: 4
+      payload_level: 3
+    ranges:
+      weight_kg:
+      - 5.1
+      - 10.0
+      reach_cm:
+      - 91
+      - 130
+      x_m:
+      - -20.0
+      - 20.0
+      y_m:
+      - -20.0
+      - 20.0
+    options:
+      units:
+      - 7
+      - 8
+      - 9
+      size_adjectives:
+      - small very heavy
+      - very heavy
+      - big size
+      - big size heavy
+      - large heavy
+      - big
+      - large heavy
+      places:
+      - warehouse
+      - assembly line
+      - station A
+      - station B
+      - station C
+      - workshop
+      - quality control room
+      - workstation
+      - maintenance zone
+      - logistics area
+      - assembly zone
+      - inspection station
+      - storage
+      - office
+      - production floor
+    template_counts:
+      train: 20
+      eval: 5
+    templates:
+      train:
+      - Pick up a {w:.2f} kg load within {d} cm in {place_src} and transport it to {place_dst} through stairs
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver to {place_dst} via uneven terrain
+      - Move to {place_src}, pick up {units} finished products within {d} cm, and deliver to {place_dst} through steps
+      - Navigate to {place_src}, pick up {units} tools within {d} cm, and deliver to {place_dst} via irregular terrain
+      - Navigate to {place_src}, pick up {w:.2f} kg of components within {d} cm, and deliver them through stairs and uneven
+        surfaces to {place_dst}
+      - Move to {place_src}, grasp a {w:.2f} kg tool within {d} cm, and carry it through irregular floor and stepped surfaces
+        to {place_dst}
+      - Navigate to {place_src}, collect {w:.2f} kg of samples within {d} cm, and transport them via uneven terrain to {place_dst}
+      - Pick up {w:.2f} kg of load within {d} cm and move from {place_src} to {place_dst} through irregular terrain with multiple
+        elevation changes
+      - Deliver {w:.2f} kg of spare parts to {place_src}, after collecting them within {d} cm in {place_dst} and climbing
+        stairs of upper level
+      - Pick up {w:.2f} kg of documents and {adj1} packages within {d} cm in {place_src} and deliver them to {place_dst} crossing
+        stairways and irregular ground
+      - Move to coordinates (x:{x1:.2f}, y:{y1:.2f}) to retrieve a {w:.2f} kg component within {d} cm and deliver it through
+        steps and narrow passages to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - Navigate to {place_src}, grasp {w:.2f} kg of tools within {d} cm, and deliver them through stepped and uneven terrain
+        to {place_dst}
+      - Pick up {w:.2f} kg of inspection items within {d} cm in {place_src} and move to {place_dst} via irregular floor
+      - Collect {w:.2f} kg of {adj1} tools within {d} cm in {place_src} and transport them to {place_dst} through uneven ground
+      - Pick up {w:.2f} kg of {adj1} instruments within {d} cm from {place_src} and deliver them to {place_dst} across uneven
+        ground and obstacles
+      - Navigate to coordinates (x:{x1:.2f}, y:{y1:.2f}), grasp {w:.2f} kg of materials within {d} cm, and transport them
+        through stairs to coordinates (x:{x2:.2f}, y:{y2:.2f})
+      - From {place_src}, pick up {w:.2f} kg of components within {d} cm and deliver them to {place_dst} through irregular
+        terrain
+      - Move to {place_src}, pick up {w:.2f} kg of items within {d} cm, and carry them over steps and narrow passages to {place_dst}
+      - Retrieve a {w:.2f} kg finished product within {d} cm in {place_src} and deliver it to {place_dst} via steep ramps
+        and obstacles
+      - Move through irregular floor and stepped surfaces to {place_src} to pick up {w:.2f} kg of load within {d} cm and deliver
+        it to {place_dst}
+      eval:
+      - Pick and transport a {w:.2f} kg load from {place_src} within {d} cm and deliver it to {place_dst} using stairwell
+      - Move to {place_src}, collect {w:.2f} kg of components within {d} cm, and carry them to {place_dst} through uneven
+        service paths
+      - Retrieve {units} finished items within {d} cm from {place_src} and transfer them to {place_dst} via stepped platforms
+      - Navigate through {place_src}, pick up {units} tools within {d} cm, and transport them to {place_dst} via irregular
+        walkways
+      - From {place_src}, grasp {w:.2f} kg of components within {d} cm and move them to {place_dst} through steps and narrow
+        passages
