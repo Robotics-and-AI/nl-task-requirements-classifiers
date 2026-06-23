@@ -6,9 +6,9 @@ The project uses a shared YAML file of scenario templates:
 
 ```text
 instruction templates + scenario requirements
--> synthetic dataset
--> sentence embeddings + handcrafted features
--> linear classifiers
+  -> synthetic dataset
+  -> sentence embeddings + handcrafted features
+  -> linear classifiers
 ```
 
 In this project, **LDA** means **Linear Discriminant Analysis**.
@@ -20,10 +20,10 @@ nl-task-requirements-classifiers/
 |-- README.md
 |-- requirements.txt
 |-- templates/
-|   -- scenarios.yaml
+   |-- scenarios.yaml
 |-- src/
-|   -- hybrid_scenarios_linear_classifier.py
-|   -- hybrid_levels_linear_classifier.py
+   |-- hybrid_scenarios_linear_classifier.py
+   |-- hybrid_levels_linear_classifier.py
 |-- outputs/
 ```
 
